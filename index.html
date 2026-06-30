@@ -1,1 +1,1386 @@
-Lol Kaushal
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaushal Tanchak | Senior Shopify Team Leader</title>
+  <meta name="description" content="Portfolio of Kaushal Tanchak, Senior Shopify Team Leader and Shopify Developer from Surat with 6+ years of ecommerce development experience.">
+  <style>
+    :root {
+      --ink: #101417;
+      --ink-2: #1e2a30;
+      --paper: #f8f5ee;
+      --soft: #fffaf1;
+      --panel: #ffffff;
+      --muted: #687078;
+      --line: rgba(16, 20, 23, 0.14);
+      --aqua: #00a6a6;
+      --blue: #2855ff;
+      --coral: #ff6247;
+      --lime: #c8ff5c;
+      --amber: #ffbb3d;
+      --shadow: 0 26px 70px rgba(16, 20, 23, 0.16);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(16, 20, 23, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 20, 23, 0.035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 42px 42px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(248, 245, 238, 0.82);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 900;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background: var(--lime);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .nav-links a {
+      padding: 10px 11px;
+      border-radius: var(--radius);
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      background: rgba(0, 166, 166, 0.1);
+    }
+
+    .nav-cta {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 14px;
+      color: #fff;
+      background: var(--ink);
+      border-radius: var(--radius);
+      font-weight: 900;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 74px);
+      display: grid;
+      align-items: center;
+      padding: 76px 0 46px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 10% 14%, rgba(255, 98, 71, 0.22), transparent 27%),
+        radial-gradient(circle at 86% 8%, rgba(40, 85, 255, 0.17), transparent 28%),
+        radial-gradient(circle at 78% 86%, rgba(0, 166, 166, 0.18), transparent 32%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(330px, 0.68fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      color: var(--ink);
+      background: var(--lime);
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--coral);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(255, 98, 71, 0.2);
+    }
+
+    h1 {
+      max-width: 900px;
+      margin-bottom: 22px;
+      font-size: clamp(2.6rem, 4.8vw, 5.2rem);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .highlight {
+      color: var(--blue);
+    }
+
+    .hero-lead {
+      max-width: 710px;
+      margin-bottom: 28px;
+      color: #334047;
+      font-size: clamp(1.08rem, 2vw, 1.34rem);
+    }
+
+    .hero-actions,
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .button {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 18px;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      font-weight: 900;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 7px 7px 0 var(--ink);
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--ink);
+    }
+
+    .button.secondary {
+      background: var(--panel);
+    }
+
+    .button.flash {
+      background: var(--amber);
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 16px;
+      background: var(--panel);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: 14px 14px 0 var(--ink);
+      transform: rotate(1.2deg);
+    }
+
+    .hero-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .hero-card-caption {
+      position: absolute;
+      left: -18px;
+      bottom: 28px;
+      max-width: 260px;
+      padding: 15px;
+      color: #fff;
+      background: var(--ink);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      font-weight: 800;
+    }
+
+    .hero-card-caption span {
+      display: block;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .ticker {
+      overflow: hidden;
+      color: #fff;
+      background: var(--ink);
+      border-block: 2px solid var(--ink);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 24s linear infinite;
+    }
+
+    .ticker span {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 15px 22px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .ticker span::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--lime);
+      border-radius: 50%;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    section {
+      padding: 92px 0;
+      scroll-margin-top: 80px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+      gap: 44px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section-head > div {
+      min-width: 0;
+    }
+
+    .label {
+      display: inline-flex;
+      margin-bottom: 12px;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      max-width: 760px;
+      font-size: clamp(1.75rem, 2.7vw, 3rem);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .metric {
+      min-height: 166px;
+      padding: 22px;
+      background: var(--panel);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: 8px 8px 0 rgba(16, 20, 23, 0.92);
+    }
+
+    .metric b {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--coral);
+      font-size: clamp(1.9rem, 3vw, 3.1rem);
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--ink-2);
+      font-weight: 900;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      gap: 18px;
+    }
+
+    .story-card,
+    .focus-card,
+    .service-card,
+    .project-card,
+    .experience-card,
+    .education-card,
+    .contact-card,
+    .mini-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 44px rgba(16, 20, 23, 0.08);
+    }
+
+    .story-card {
+      padding: 34px;
+      color: #fff;
+      background: var(--ink);
+      border: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-card::after {
+      content: "SHOPIFY";
+      position: absolute;
+      right: -20px;
+      bottom: -36px;
+      color: rgba(255, 255, 255, 0.06);
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .story-card p {
+      position: relative;
+      z-index: 1;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.02rem;
+    }
+
+    .story-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .focus-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .focus-card {
+      padding: 22px;
+      border-left: 6px solid var(--aqua);
+    }
+
+    .focus-card:nth-child(2) {
+      border-left-color: var(--coral);
+    }
+
+    .focus-card:nth-child(3) {
+      border-left-color: var(--amber);
+    }
+
+    .focus-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .focus-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .services {
+      background: #eaf7f3;
+      border-block: 1px solid var(--line);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      min-height: 240px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: attr(data-no);
+      position: absolute;
+      right: 16px;
+      top: 8px;
+      color: rgba(16, 20, 23, 0.06);
+      font-size: 3.8rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      color: #fff;
+      background: var(--blue);
+      border-radius: var(--radius);
+      font-weight: 900;
+    }
+
+    .service-card:nth-child(2n) .service-icon {
+      background: var(--coral);
+    }
+
+    .service-card:nth-child(3n) .service-icon {
+      color: var(--ink);
+      background: var(--lime);
+    }
+
+    .service-card p {
+      color: var(--muted);
+    }
+
+    .skill-board {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 18px;
+    }
+
+    .skill-feature {
+      padding: 28px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(255, 98, 71, 0.26), transparent 46%),
+        var(--ink);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .skill-feature h3 {
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+
+    .skill-feature p {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .meter {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .meter-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 12px;
+      align-items: center;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .bar {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--lime), var(--aqua));
+      border-radius: 999px;
+    }
+
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-content: start;
+      padding: 26px;
+      background: var(--panel);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+    }
+
+    .skill {
+      padding: 9px 12px;
+      color: var(--ink);
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+
+    .process {
+      background: #f4f0ff;
+      border-block: 1px solid var(--line);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .process-step {
+      min-height: 190px;
+      padding: 20px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .process-step b {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      color: #fff;
+      background: var(--ink);
+      border-radius: var(--radius);
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--ink);
+      box-shadow: 10px 10px 0 var(--ink);
+    }
+
+    .project-code {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      color: #fff;
+      background: var(--aqua);
+      border-radius: var(--radius);
+      font-weight: 900;
+    }
+
+    .project-card:nth-child(2) .project-code {
+      background: var(--coral);
+    }
+
+    .project-card:nth-child(3) .project-code {
+      color: var(--ink);
+      background: var(--amber);
+    }
+
+    .project-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.28rem;
+      line-height: 1.24;
+    }
+
+    .project-card p {
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0;
+    }
+
+    .tags span {
+      padding: 7px 10px;
+      background: #f4f3ec;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #424b51;
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .leadership {
+      color: #fff;
+      background: var(--ink);
+    }
+
+    .leadership .label,
+    .leadership .section-head p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .lead-card {
+      min-height: 190px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+    }
+
+    .lead-card b {
+      color: var(--lime);
+      font-size: 1.55rem;
+    }
+
+    .lead-card p {
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 0;
+    }
+
+    .experience-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.6fr);
+      gap: 18px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .experience-card {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 22px;
+      padding: 24px;
+    }
+
+    .date {
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .experience-card p,
+    .education-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .education-card {
+      padding: 26px;
+      border-top: 8px solid var(--lime);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      padding: 22px;
+    }
+
+    .mini-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .mini-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .contact {
+      color: #fff;
+      background:
+        radial-gradient(circle at 16% 14%, rgba(255, 98, 71, 0.22), transparent 31%),
+        radial-gradient(circle at 82% 20%, rgba(200, 255, 92, 0.13), transparent 28%),
+        var(--ink);
+    }
+
+    .contact .section-head p,
+    .contact .label {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+      gap: 18px;
+    }
+
+    .contact-panel {
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+    }
+
+    .contact-panel h3 {
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+
+    .contact-panel p {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .contact-card {
+      min-height: 132px;
+      padding: 20px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--lime);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-card span {
+      overflow-wrap: anywhere;
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 800;
+    }
+
+    .social-row {
+      margin-top: 22px;
+    }
+
+    .social-link {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 13px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      font-weight: 900;
+    }
+
+    .site-footer {
+      padding: 26px 0;
+      color: rgba(255, 255, 255, 0.68);
+      background: var(--ink);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.92rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .section-head,
+      .about-layout,
+      .skill-board,
+      .experience-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid,
+      .service-grid,
+      .projects-grid,
+      .leadership-grid,
+      .mini-grid,
+      .contact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .hero-card {
+        max-width: 540px;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      h1 {
+        font-size: clamp(2.15rem, 9vw, 3.25rem);
+        line-height: 1.08;
+      }
+
+      h2 {
+        font-size: clamp(1.55rem, 7vw, 2.2rem);
+        line-height: 1.16;
+      }
+
+      .hero-actions,
+      .social-row {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button,
+      .social-link,
+      .nav-cta {
+        width: 100%;
+      }
+
+      .metrics-grid,
+      .service-grid,
+      .process-grid,
+      .projects-grid,
+      .leadership-grid,
+      .mini-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .meter-row {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Kaushal Tanchak home">
+          <span class="brand-mark">KT</span>
+          <span>Kaushal Tanchak</span>
+        </a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="nav-cta" href="mailto:kaushal.tanchak@gmail.com">Hire Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <span class="kicker">Senior Shopify Team Leader</span>
+          <h1 id="hero-title">I build <span class="highlight">Shopify</span> stores that sell, scale, and stay fast.</h1>
+          <p class="hero-lead">I help brands turn Shopify into a polished selling system: clean storefronts, smooth customer journeys, reliable integrations, and launch-ready ecommerce experiences built with care.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">Explore Projects</a>
+            <a class="button flash" href="assets/Kaushal-Tanchak-Resume.pdf" download>Download Resume</a>
+            <a class="button secondary" href="tel:+919978769464">Call +91 99787 69464</a>
+          </div>
+          <div class="social-row" aria-label="Social profiles">
+            <a class="social-link" href="mailto:kaushal.tanchak@gmail.com">Email</a>
+            <a class="social-link" href="https://github.com/kaushaltanchak" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="social-link" href="https://www.linkedin.com/in/kaushal-tanchak/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Portfolio visual">
+          <img src="assets/portfolio-hero.png" alt="Abstract developer workspace visual for Kaushal Tanchak portfolio">
+          <div class="hero-card-caption">
+            Portfolio built around store quality, speed, and business impact.
+            <span>Shopify Developer from Surat, India</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Shopify Liquid</span><span>Shopify Plus</span><span>Theme Customization</span><span>Figma to Shopify</span><span>App Integrations</span><span>Performance Optimization</span><span>Migration Projects</span><span>Team Leadership</span>
+        <span>Shopify Liquid</span><span>Shopify Plus</span><span>Theme Customization</span><span>Figma to Shopify</span><span>App Integrations</span><span>Performance Optimization</span><span>Migration Projects</span><span>Team Leadership</span>
+      </div>
+    </div>
+
+    <section id="snapshot" aria-labelledby="snapshot-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Snapshot</span>
+            <h2 id="snapshot-title">A quick success snapshot.</h2>
+          </div>
+          <p>A portfolio should show confidence fast. These numbers frame the kind of Shopify work I focus on: reliable delivery, live projects, and room to keep growing the showcase.</p>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric"><b>95</b><span>Success score focus across planning, build quality, QA, and launch confidence.</span></div>
+          <div class="metric"><b>6+</b><span>Years creating Shopify and ecommerce experiences for real business needs.</span></div>
+          <div class="metric"><b>3</b><span>Featured live projects now, with space to add more project stories later.</span></div>
+          <div class="metric"><b>100%</b><span>Responsive-first approach for mobile, tablet, desktop, and customer flow.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">About</span>
+            <h2 id="about-title">I build Shopify experiences that feel clear, fast, and ready for customers.</h2>
+          </div>
+          <p>This portfolio is shaped around the ecommerce problems I like solving: storefront quality, conversion flow, migration clarity, and maintainable Shopify builds.</p>
+        </div>
+        <div class="about-layout">
+          <article class="story-card">
+            <p>I enjoy taking a Shopify idea from rough requirement to a storefront that feels stable, useful, and business-ready. My work sits between design accuracy, frontend detail, backend logic, integrations, and launch discipline.</p>
+            <p>For me, a good ecommerce build is not only beautiful. It should load quickly, explain the product clearly, guide customers without confusion, and stay easy for the store team to manage after launch.</p>
+            <p>This portfolio starts with three selected projects. More case studies can be added later without changing the whole site structure.</p>
+          </article>
+          <div class="focus-grid">
+            <div class="focus-card">
+              <h3>Storefront impact</h3>
+              <p>Clean layouts, responsive sections, smoother product discovery, and customer-friendly buying paths.</p>
+            </div>
+            <div class="focus-card">
+              <h3>Technical confidence</h3>
+              <p>Liquid, theme customization, apps, APIs, migrations, and performance improvements handled with structure.</p>
+            </div>
+            <div class="focus-card">
+              <h3>Long-term usability</h3>
+              <p>Stores built so clients can manage content, campaigns, products, and improvements without friction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Services</span>
+            <h2 id="services-title">What I can help you build.</h2>
+          </div>
+          <p>These are the portfolio-ready services I want visitors to understand immediately: what I solve, what I improve, and where I can add value.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card" data-no="01">
+            <div class="service-icon">LI</div>
+            <h3>Custom Shopify Development</h3>
+            <p>Custom sections, templates, product flows, and store features shaped around the brand's real selling process.</p>
+          </article>
+          <article class="service-card" data-no="02">
+            <div class="service-icon">UI</div>
+            <h3>Figma / PSD to Shopify</h3>
+            <p>Designs translated into polished Shopify pages that look clean, work smoothly, and respect the original UI intent.</p>
+          </article>
+          <article class="service-card" data-no="03">
+            <div class="service-icon">API</div>
+            <h3>Apps & API Integrations</h3>
+            <p>Useful integrations that connect store behavior with apps, external data, and customer convenience.</p>
+          </article>
+          <article class="service-card" data-no="04">
+            <div class="service-icon">MG</div>
+            <h3>Platform Migration</h3>
+            <p>Migration work that protects store data, recreates important experience patterns, and reduces launch risk.</p>
+          </article>
+          <article class="service-card" data-no="05">
+            <div class="service-icon">QA</div>
+            <h3>QA & Launch Support</h3>
+            <p>Practical QA, bug fixing, mobile checks, launch readiness, and refinement after the store goes live.</p>
+          </article>
+          <article class="service-card" data-no="06">
+            <div class="service-icon">LD</div>
+            <h3>Team Leadership</h3>
+            <p>Structured development support for teams that need guidance, review, planning, and execution clarity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Expertise</span>
+            <h2 id="skills-title">A practical Shopify stack.</h2>
+          </div>
+          <p>The stack is shown as capability, not a checklist. Each skill supports a clearer store, faster build, or smoother launch.</p>
+        </div>
+        <div class="skill-board">
+          <article class="skill-feature">
+            <h3>Strongest where design, Shopify logic, and business goals meet.</h3>
+            <p>I use these tools to create storefronts that are easy to browse, simple to manage, and flexible enough for future improvements.</p>
+            <div class="meter">
+              <div class="meter-row"><span>Shopify / Liquid</span><div class="bar"><span style="width: 96%"></span></div></div>
+              <div class="meter-row"><span>Frontend</span><div class="bar"><span style="width: 92%"></span></div></div>
+              <div class="meter-row"><span>Integrations</span><div class="bar"><span style="width: 86%"></span></div></div>
+              <div class="meter-row"><span>Leadership</span><div class="bar"><span style="width: 90%"></span></div></div>
+            </div>
+          </article>
+          <div class="skill-cloud">
+            <span class="skill">Shopify Liquid</span>
+            <span class="skill">Shopify Plus</span>
+            <span class="skill">Shopify Theme</span>
+            <span class="skill">Dawn Theme</span>
+            <span class="skill">HTML5</span>
+            <span class="skill">CSS3</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">jQuery</span>
+            <span class="skill">React.js Basic</span>
+            <span class="skill">Vue.js Basic</span>
+            <span class="skill">API Integration</span>
+            <span class="skill">Responsive Design</span>
+            <span class="skill">Performance Optimization</span>
+            <span class="skill">Store Migration</span>
+            <span class="skill">Code Review</span>
+            <span class="skill">Project Planning</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Process</span>
+            <h2 id="process-title">How a strong Shopify project gets shipped.</h2>
+          </div>
+          <p>The goal is not just finishing tasks. It is reducing confusion, building the right thing, testing carefully, and launching with confidence.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-step"><b>01</b><h3>Discover</h3><p>Clarify goals, audience, product behavior, existing issues, and what success should look like.</p></article>
+          <article class="process-step"><b>02</b><h3>Map</h3><p>Plan sections, data needs, app logic, migration steps, and the safest path to launch.</p></article>
+          <article class="process-step"><b>03</b><h3>Create</h3><p>Build responsive Shopify templates, custom sections, integrations, and customer-facing features.</p></article>
+          <article class="process-step"><b>04</b><h3>Polish</h3><p>Refine spacing, interaction, mobile behavior, performance, bugs, and browser consistency.</p></article>
+          <article class="process-step"><b>05</b><h3>Launch</h3><p>Prepare the final store, support handoff, and keep improvements moving after release.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Projects</span>
+            <h2 id="projects-title">Project stories, not just project names.</h2>
+          </div>
+          <p>These cards are written as portfolio highlights. More projects can be added later using the same card pattern.</p>
+        </div>
+        <div class="projects-grid">
+          <a class="project-card" href="https://www.evcableshop.co.uk/" target="_blank" rel="noreferrer">
+            <div>
+              <div class="project-code">01</div>
+              <h3>EV Cable Shop</h3>
+              <p>Turned a WordPress store into a Shopify experience while keeping the existing brand feel, moving key store data, and adding dynamic vehicle compatibility through external API data.</p>
+              <div class="tags">
+                <span>WordPress to Shopify</span>
+                <span>LitExtension</span>
+                <span>External API</span>
+                <span>Performance</span>
+              </div>
+            </div>
+            <span class="project-link">Visit project -></span>
+          </a>
+          <a class="project-card" href="https://plateful.co/" target="_blank" rel="noreferrer">
+            <div>
+              <div class="project-code">02</div>
+              <h3>Plateful</h3>
+              <p>Converted detailed Figma direction into a responsive Shopify storefront with custom sections, design accuracy, and a smooth customer experience across devices.</p>
+              <div class="tags">
+                <span>Figma to Shopify</span>
+                <span>Responsive Build</span>
+                <span>Theme Sections</span>
+                <span>UI Accuracy</span>
+              </div>
+            </div>
+            <span class="project-link">Visit project -></span>
+          </a>
+          <a class="project-card" href="https://capsulewd.com/" target="_blank" rel="noreferrer">
+            <div>
+              <div class="project-code">03</div>
+              <h3>CapsuleWD</h3>
+              <p>Built a scalable Dawn-based storefront with custom business features, responsive templates, and UX improvements aligned with the client's brand vision.</p>
+              <div class="tags">
+                <span>Dawn Theme</span>
+                <span>Custom Features</span>
+                <span>Scalable Storefront</span>
+                <span>UX Optimization</span>
+              </div>
+            </div>
+            <span class="project-link">Visit project -></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="leadership" id="leadership" aria-labelledby="leadership-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Leadership</span>
+            <h2 id="leadership-title">A portfolio of dependable execution.</h2>
+          </div>
+          <p>Strong projects need more than development. They need clear thinking, communication, review, and the ability to keep work moving.</p>
+        </div>
+        <div class="leadership-grid">
+          <article class="lead-card"><b>01</b><h3>Clear Ownership</h3><p>Taking responsibility for the build path, technical choices, and delivery quality.</p></article>
+          <article class="lead-card"><b>02</b><h3>Better Decisions</h3><p>Choosing the right Shopify approach instead of overcomplicating the store.</p></article>
+          <article class="lead-card"><b>03</b><h3>Launch Readiness</h3><p>Keeping QA, responsiveness, app behavior, and client requirements visible before release.</p></article>
+          <article class="lead-card"><b>04</b><h3>Team Energy</h3><p>Supporting developers with review, direction, and practical problem solving.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Experience</span>
+            <h2 id="experience-title">Experience behind the portfolio.</h2>
+          </div>
+          <p>A short look at the real-world foundation behind the project work, kept focused on capability and outcomes.</p>
+        </div>
+        <div class="experience-layout">
+          <div class="timeline">
+            <article class="experience-card">
+              <div class="date">Current</div>
+              <div>
+                <h3>Current Shopify Delivery Lead</h3>
+                <p>Guiding Shopify builds from requirement clarity to launch, with focus on quality, team direction, review, and client-ready ecommerce outcomes.</p>
+              </div>
+            </article>
+            <article class="experience-card">
+              <div class="date">2020 - Present</div>
+              <div>
+                <h3>Shopify Build Specialist</h3>
+                <p>Hands-on work across Shopify themes, Liquid, responsive frontend, integrations, bug fixing, migrations, and store improvement tasks.</p>
+              </div>
+            </article>
+          </div>
+          <aside class="education-card">
+            <span class="label">Education</span>
+            <h3>Bachelor of Engineering, Information Technology</h3>
+            <p>Sarvajanik College of Engineering & Technology</p>
+            <p>2016 - 2020</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof" aria-labelledby="proof-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Strengths</span>
+            <h2 id="proof-title">Success signals I care about.</h2>
+          </div>
+          <p>Every project can be judged by the details customers feel and clients depend on after launch.</p>
+        </div>
+        <div class="mini-grid">
+          <article class="mini-card"><h3>Conversion Readiness</h3><p>Pages that guide customers clearly from product interest to purchase action.</p></article>
+          <article class="mini-card"><h3>Mobile Confidence</h3><p>Responsive layouts that do not treat mobile as an afterthought.</p></article>
+          <article class="mini-card"><h3>Maintainable Builds</h3><p>Theme sections and features that stay manageable for future updates.</p></article>
+          <article class="mini-card"><h3>Launch Quality</h3><p>QA, bug fixing, and final review before real customers use the store.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="platforms" aria-labelledby="platforms-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Platforms</span>
+            <h2 id="platforms-title">Ready for more case studies.</h2>
+          </div>
+          <p>This section is designed to grow. Add future work by platform, project type, client industry, or result.</p>
+        </div>
+        <div class="mini-grid">
+          <article class="mini-card"><h3>Migration Wins</h3><p>Before-and-after Shopify rebuilds, data moves, and platform upgrades.</p></article>
+          <article class="mini-card"><h3>Custom Features</h3><p>Store-specific tools, filters, compatibility flows, and advanced product logic.</p></article>
+          <article class="mini-card"><h3>Design Builds</h3><p>Figma and PSD storefronts turned into responsive Shopify experiences.</p></article>
+          <article class="mini-card"><h3>Performance Stories</h3><p>Speed, usability, UX, and conversion improvements worth showing later.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="label">Contact</span>
+            <h2 id="contact-title">Ready to build a stronger Shopify store?</h2>
+          </div>
+          <p>Have a Shopify store idea, rebuild, migration, or improvement plan? I can help shape it into a cleaner customer experience.</p>
+        </div>
+        <div class="contact-layout">
+          <article class="contact-panel">
+            <h3>Let's connect.</h3>
+            <p>I am based in Surat and open to Shopify-focused ecommerce work, project collaboration, and conversations around better storefront experiences.</p>
+            <div class="hero-actions">
+              <a class="button flash" href="mailto:kaushal.tanchak@gmail.com">Send Email</a>
+              <a class="button secondary" href="assets/Kaushal-Tanchak-Resume.pdf" download>Resume PDF</a>
+            </div>
+            <div class="social-row" aria-label="Social profiles">
+              <a class="social-link" href="https://github.com/kaushaltanchak" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="social-link" href="https://www.linkedin.com/in/kaushal-tanchak/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="social-link" href="mailto:kaushal.tanchak@gmail.com">Email</a>
+            </div>
+          </article>
+          <div class="contact-grid">
+            <a class="contact-card" href="mailto:kaushal.tanchak@gmail.com"><strong>Email</strong><span>kaushal.tanchak@gmail.com</span></a>
+            <a class="contact-card" href="tel:+919978769464"><strong>Phone</strong><span>+91 99787 69464</span></a>
+            <div class="contact-card"><strong>Address</strong><span>450, Purvi Society Part 2, Hirabaugh, Surat - 395008</span></div>
+            <div class="contact-card"><strong>Location</strong><span>Surat, Gujarat, India</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>(c) 2026 Kaushal Tanchak | Senior Shopify Team Leader</span>
+      <span>Built for GitHub Pages with HTML and CSS.</span>
+    </div>
+  </footer>
+</body>
+</html>

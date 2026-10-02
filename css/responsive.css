@@ -219,3 +219,75 @@
   .project__meta li + li::before { margin-right: 6px; }
   .footer__email { font-size: 19px; }
 }
+
+/* Small-screen layout for the scroll-storytelling pass */
+@media (max-width: 900px) {
+  .mobile-menu { background: #0b0d0b; }
+  .cursor { display: none; }
+  html.cursor-ready, html.cursor-ready a, html.cursor-ready button, html.cursor-ready summary { cursor: auto; }
+  .work-sequence { margin-top: 38px; }
+  .work-sequence__stage { gap: 0; }
+  .work-scenes { gap: 78px; }
+  .work-scene { grid-template-columns: minmax(0,1.08fr) minmax(240px,.92fr); align-items: center; gap: 28px; }
+  .work-scene:nth-child(even) { grid-template-columns: minmax(240px,.92fr) minmax(0,1.08fr); }
+  .work-scene:nth-child(even) .work-scene__visual { order: 2; }
+  .work-scene__visual { aspect-ratio: 1.48 / 1; }
+  .work-scene__details { grid-template-columns: 1fr; gap: 18px; }
+  .work-scene__identity h3 { font-size: clamp(34px, 5vw, 50px); }
+  .work-scene__description { font-size: 16px; }
+  .work-scene__visual .project__view { width: 74px; height: 74px; font-size: 11px; }
+  .build-story { margin-top: 48px; }
+  .build-step { min-height: 0; padding-block: 21px; }
+  .build-step h3 { font-size: 24px; }
+  .build-step p { font-size: 16px; }
+  .section-heading__note { font-size: 15px; }
+  .complex-build p:not(.eyebrow), .service__detail p, .ai__summary, .principles p, .process-step p, .about__main > p:last-child, .final-cta__bottom > p { font-size: 16px; }
+  .about__principles p { font-size: 15px; }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .mobile-nav { z-index: 61; }
+  .menu-toggle { z-index: 63; }
+  .mobile-menu { height: 100vh; height: 100dvh; min-height: 100svh; padding: calc(env(safe-area-inset-top, 0px) + 98px) var(--page-pad) calc(env(safe-area-inset-bottom, 0px) + 22px); }
+  .mobile-menu__top, .mobile-menu__bottom { font-size: 10px; }
+  .mobile-menu__top { margin-bottom: clamp(20px, 5vh, 34px); }
+  .mobile-menu > a { min-height: clamp(62px, 9.8vh, 80px); grid-template-columns: 34px minmax(0,1fr) 24px; gap: 9px; font-size: clamp(38px, 10vw, 54px); }
+  .mobile-menu .mobile-menu__project { min-height: 56px; font-size: 16px; }
+  .hero__foot > p, .statement__right p, .project__description, .problem p, .principles p, .about__main > p:last-child, .final-cta__bottom > p { font-size: 16px; }
+  .word-run { gap: 4px; font-size: clamp(24px, 7vw, 29px); }
+  .work { padding-top: 90px; }
+  .work-sequence { margin-top: 28px; }
+  .work-scenes { gap: 68px; }
+  .work-scene, .work-scene:nth-child(even) { grid-template-columns: 1fr; gap: 20px; }
+  .work-scene:nth-child(even) .work-scene__visual { order: 0; }
+  .work-scene__visual { aspect-ratio: 1.45 / 1; }
+  .work-scene__visual--paired { aspect-ratio: 1.35 / 1; }
+  .work-scene__visual-tag { right: 10px; bottom: 10px; left: 10px; padding: 8px; font-size: 10px; }
+  .work-scene__visual .project__view { top: 16px; right: 16px; left: auto; width: 68px; height: 68px; gap: 2px; font-size: 12px; opacity: 1; transform: translate(0,0) scale(1); }
+  .work-scene__visual .project__view .icon { width: 15px; height: 15px; }
+  .work-scene__details { gap: 13px; }
+  .work-scene__number, .work-scene__category { font-size: 12px; }
+  .work-scene__number { margin-bottom: 9px; }
+  .work-scene__identity h3 { font-size: 40px; }
+  .work-scene__description { font-size: 16px; }
+  .work-scene__meta { margin: 13px 0; gap: 7px 10px; }
+  .work-scene__meta li { font-size: 12px; }
+  .work-scene__cta { min-height: 48px; padding: 11px 16px; font-size: 15px; }
+  .build-story { margin-top: 35px; }
+  .build-step { grid-template-columns: 34px minmax(0,1fr); gap: 12px; padding-block: 20px; }
+  .build-step h3 { margin-bottom: 6px; font-size: 22px; }
+  .build-step p { font-size: 16px; line-height: 1.55; }
+  .service__trigger { min-height: 76px; grid-template-columns: 31px minmax(0,1fr) 38px; gap: 10px; }
+  .service__title { font-size: clamp(20px, 5.5vw, 27px); }
+  .service__detail p { margin-inline: 41px 35px; font-size: 16px; }
+  .ai__summary, .problem p, .about__main > p:last-child, .about__principles p, .final-cta__bottom > p { font-size: 16px; }
+}
+
+@media (max-width: 380px) {
+  .mobile-menu { padding-top: calc(env(safe-area-inset-top, 0px) + 84px); }
+  .mobile-menu__top { margin-bottom: 18px; }
+  .mobile-menu > a { min-height: 58px; font-size: 37px; }
+  .work-scene__identity h3 { font-size: 36px; }
+  .work-scene__visual-tag { max-width: calc(100% - 94px); font-size: 9px; }
+}

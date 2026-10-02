@@ -57,7 +57,7 @@
       </symbol>
     </svg>
 
-    <div class="cursor" aria-hidden="true"><span></span></div>
+    <div class="cursor" aria-hidden="true"><span></span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></div>
 
     <header class="site-header" id="top">
       <a class="wordmark" href="#top" aria-label="ShopDev home">
@@ -78,11 +78,11 @@
       </a>
 
       <details class="mobile-nav" id="mobile-nav">
-        <summary class="menu-toggle" aria-label="Open menu">
+        <summary class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
           <svg class="icon menu-toggle__open" aria-hidden="true"><use href="#i-menu" /></svg>
           <svg class="icon menu-toggle__close" aria-hidden="true"><use href="#i-close" /></svg>
         </summary>
-        <nav class="mobile-menu" aria-label="Mobile navigation">
+        <nav class="mobile-menu" aria-label="Mobile navigation" id="mobile-menu">
           <div class="mobile-menu__top"><span>SHOPDEV / NAVIGATION</span><span>01—04</span></div>
           <a href="#work"><span>01</span>Work<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
           <a href="#services"><span>02</span>Services<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
@@ -145,8 +145,8 @@
         <div class="statement__body">
           <h2 id="statement-title" data-reveal>Your store is more than a <span>website.</span></h2>
           <div class="statement__right" data-reveal>
-            <div class="word-run" aria-label="Strategy, experience, Shopify, development, performance, growth.">
-              <span>Strategy.</span><span>Experience.</span><span>Shopify.</span><span>Development.</span><span>Performance.</span><span>Growth.</span>
+            <div class="word-run" aria-label="Strategy, experience, Shopify, development, performance, growth." data-word-sequence>
+              <span data-word>STRATEGY</span><span data-word>EXPERIENCE</span><span data-word>SHOPIFY</span><span data-word>DEVELOPMENT</span><span data-word>PERFORMANCE</span><span data-word>GROWTH</span>
             </div>
             <p>From storefront design to custom functionality, we build the pieces that make an ecommerce business work better.</p>
           </div>
@@ -160,63 +160,59 @@
           <p class="section-heading__note">Real ecommerce experiences built for different products, customers and business requirements.</p>
         </div>
 
-        <div class="project-list">
-          <article class="project project--anti" data-reveal>
-            <a class="project__visual project__visual--anti project-link" href="https://antilabel.in/" target="_blank" rel="noopener noreferrer" aria-label="Visit Anti Label">
-              <img src="assets/images/antilabel-storefront.webp" alt="Anti Label menswear storefront imagery, showing a model in a muted grey outfit" width="600" height="400" loading="lazy">
-              <span class="project__visual-tag">FASHION / SHOPIFY</span><span class="project__view">VIEW <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></span>
-            </a>
-            <div class="project__copy">
-              <p class="project__number">01 <span> / 04</span></p>
-              <div><p class="eyebrow project__category">Fashion / Shopify</p><h3>Anti Label</h3><p class="project__description">A modern menswear storefront focused on product discovery, collections and a clean shopping experience.</p>
-                <ul class="project__meta" aria-label="Project capabilities"><li>Shopify</li><li>Ecommerce UX</li><li>Custom theme</li></ul>
-                <a class="project__cta" href="https://antilabel.in/" target="_blank" rel="noopener noreferrer"><span>View project</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
-              </div>
+        <div class="work-sequence" data-work-sequence aria-label="Selected ecommerce projects">
+          <div class="work-sequence__stage">
+            <div class="work-sequence__top">
+              <span>SELECTED WORK / FOUR BUILDS</span>
+              <span data-work-current aria-live="polite">01 / 04</span>
+              <div class="work-sequence__progress" role="progressbar" aria-label="Selected work progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="Anti Label, 1 of 4 projects"><span></span></div>
             </div>
-          </article>
+            <div class="work-scenes">
+              <article class="work-scene is-active" data-work-scene data-project-name="Anti Label">
+                <a class="work-scene__visual project-link" href="https://antilabel.in/" target="_blank" rel="noopener noreferrer" aria-label="Visit Anti Label">
+                  <img src="assets/images/antilabel-storefront.webp" alt="Anti Label menswear campaign with a model in a muted grey outfit" width="600" height="400" loading="lazy">
+                  <span class="work-scene__visual-tag">FASHION / SHOPIFY</span><span class="project__view">VIEW <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></span>
+                </a>
+                <div class="work-scene__details">
+                  <div class="work-scene__identity"><p class="work-scene__number">01 <span>/ 04</span></p><p class="work-scene__category">Fashion / Shopify</p><h3>Anti Label</h3></div>
+                  <div class="work-scene__summary"><p class="work-scene__description">A modern menswear storefront focused on product discovery, collections and a clean shopping experience.</p><ul class="work-scene__meta" aria-label="Project capabilities"><li>Shopify</li><li>Ecommerce UX</li><li>Custom theme</li></ul><a class="work-scene__cta" href="https://antilabel.in/" target="_blank" rel="noopener noreferrer"><span>View project</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a></div>
+                </div>
+              </article>
 
-          <article class="project project--sere" data-reveal>
-            <div class="project__copy">
-              <p class="project__number">02 <span> / 04</span></p>
-              <div><p class="eyebrow project__category">Beauty / Wellness</p><h3>SereSilk</h3><p class="project__description">A premium ecommerce experience designed around silk skincare, products and a refined brand presentation.</p>
-                <ul class="project__meta" aria-label="Project capabilities"><li>Shopify</li><li>Ecommerce</li><li>UX</li></ul>
-                <a class="project__cta" href="https://seresilk.com.au/" target="_blank" rel="noopener noreferrer"><span>View project</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
-              </div>
-            </div>
-            <a class="project__visual project__visual--sere project-link" href="https://seresilk.com.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit SereSilk">
-              <img src="assets/images/seresilk-home.webp" alt="Seresilk skincare imagery from the official storefront" width="1800" height="1012" loading="lazy">
-              <span class="project__visual-tag">BEAUTY / WELLNESS</span><span class="project__view">VIEW <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></span>
-            </a>
-          </article>
+              <article class="work-scene" data-work-scene data-project-name="SereSilk">
+                <a class="work-scene__visual" href="https://seresilk.com.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit SereSilk">
+                  <img src="assets/images/seresilk-home.webp" alt="SereSilk skincare campaign imagery from its storefront" width="1800" height="1012" loading="lazy">
+                  <span class="work-scene__visual-tag">BEAUTY / WELLNESS</span><span class="project__view">VIEW <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></span>
+                </a>
+                <div class="work-scene__details">
+                  <div class="work-scene__identity"><p class="work-scene__number">02 <span>/ 04</span></p><p class="work-scene__category">Beauty / Wellness</p><h3>SereSilk</h3></div>
+                  <div class="work-scene__summary"><p class="work-scene__description">A premium ecommerce experience designed around silk skincare, products and a refined brand presentation.</p><ul class="work-scene__meta" aria-label="Project capabilities"><li>Shopify</li><li>Ecommerce UX</li><li>Custom theme</li></ul><a class="work-scene__cta" href="https://seresilk.com.au/" target="_blank" rel="noopener noreferrer"><span>View project</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a></div>
+                </div>
+              </article>
 
-          <article class="project project--rituals" data-reveal>
-            <a class="project__visual project__visual--rituals project-link" href="https://goodrituals.com.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit Good Rituals">
-              <img class="rituals-image rituals-image--one" src="assets/images/goodrituals-hero-a.webp" alt="Good Rituals storefront campaign imagery, model in a pale blue top" width="540" height="810" loading="lazy">
-              <img class="rituals-image rituals-image--two" src="assets/images/goodrituals-hero-b.webp" alt="Good Rituals campaign image from its storefront" width="540" height="810" loading="lazy">
-              <span class="project__visual-tag">WELLNESS / DIRECT TO CONSUMER</span><span class="project__view">VIEW <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></span>
-            </a>
-            <div class="project__copy">
-              <p class="project__number">03 <span> / 04</span></p>
-              <div><p class="eyebrow project__category">Wellness / DTC</p><h3>Good Rituals</h3><p class="project__description">A conversion-focused wellness storefront combining product discovery, bundles, social proof and brand storytelling.</p>
-                <ul class="project__meta" aria-label="Project capabilities"><li>Shopify</li><li>UX</li><li>Conversion</li></ul>
-                <a class="project__cta" href="https://goodrituals.com.au/" target="_blank" rel="noopener noreferrer"><span>View project</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
-              </div>
-            </div>
-          </article>
+              <article class="work-scene" data-work-scene data-project-name="Good Rituals">
+                <a class="work-scene__visual work-scene__visual--paired" href="https://goodrituals.com.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit Good Rituals">
+                  <img src="assets/images/goodrituals-hero-a.webp" alt="Good Rituals campaign image with a model in a pale blue top" width="540" height="810" loading="lazy"><img src="assets/images/goodrituals-hero-b.webp" alt="Good Rituals campaign image showing a second look" width="540" height="810" loading="lazy">
+                  <span class="work-scene__visual-tag">WELLNESS / DIRECT TO CONSUMER</span><span class="project__view">VIEW <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></span>
+                </a>
+                <div class="work-scene__details">
+                  <div class="work-scene__identity"><p class="work-scene__number">03 <span>/ 04</span></p><p class="work-scene__category">Wellness / DTC</p><h3>Good Rituals</h3></div>
+                  <div class="work-scene__summary"><p class="work-scene__description">A conversion-focused wellness storefront combining product discovery, bundles, social proof and brand storytelling.</p><ul class="work-scene__meta" aria-label="Project capabilities"><li>Shopify</li><li>Ecommerce UX</li><li>Conversion</li></ul><a class="work-scene__cta" href="https://goodrituals.com.au/" target="_blank" rel="noopener noreferrer"><span>View project</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a></div>
+                </div>
+              </article>
 
-          <article class="project project--happy" data-reveal>
-            <div class="project__copy">
-              <p class="project__number">04 <span> / 04</span></p>
-              <div><p class="eyebrow project__category">Personalized ecommerce</p><h3>HappyTooned</h3><p class="project__description">A custom ecommerce experience built around personalized products, customer inputs and a guided purchase journey.</p>
-                <ul class="project__meta" aria-label="Project capabilities"><li>Shopify</li><li>Custom functionality</li><li>Ecommerce UX</li></ul>
-                <a class="project__cta" href="https://happytooned.com/" target="_blank" rel="noopener noreferrer"><span>View project</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
-              </div>
+              <article class="work-scene" data-work-scene data-project-name="HappyTooned">
+                <a class="work-scene__visual work-scene__visual--contain" href="https://happytooned.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit HappyTooned">
+                  <img src="assets/images/happytooned-cover.webp" alt="HappyTooned personalized portrait artwork from its ecommerce storefront" width="2000" height="1500" loading="lazy">
+                  <span class="work-scene__visual-tag">PERSONALIZED / MADE TO ORDER</span><span class="project__view">VIEW <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></span>
+                </a>
+                <div class="work-scene__details">
+                  <div class="work-scene__identity"><p class="work-scene__number">04 <span>/ 04</span></p><p class="work-scene__category">Personalized ecommerce</p><h3>HappyTooned</h3></div>
+                  <div class="work-scene__summary"><p class="work-scene__description">A custom ecommerce experience built around personalized products, customer inputs and a guided purchase journey.</p><ul class="work-scene__meta" aria-label="Project capabilities"><li>Shopify</li><li>Custom features</li><li>Ecommerce UX</li></ul><a class="work-scene__cta" href="https://happytooned.com/" target="_blank" rel="noopener noreferrer"><span>View project</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a></div>
+                </div>
+              </article>
             </div>
-            <a class="project__visual project__visual--happy project-link" href="https://happytooned.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit HappyTooned">
-              <img src="assets/images/happytooned-cover.webp" alt="HappyTooned custom portrait artwork shown on its ecommerce storefront" width="2000" height="1500" loading="lazy">
-              <span class="project__visual-tag">PERSONALIZED / MADE TO ORDER</span><span class="project__view">VIEW <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></span>
-            </a>
-          </article>
+          </div>
         </div>
 
         <div class="complex-build" data-reveal>
@@ -299,14 +295,21 @@
           <div><p class="eyebrow"><span class="eyebrow__index">07</span><span>How we work</span></p><h2 id="process-title">A better way<br>to build.</h2></div>
           <p class="section-heading__note">A clear route from the first conversation to a store your team can keep improving.</p>
         </div>
-        <div class="process-track" data-reveal>
-          <svg class="process-track__line" viewBox="0 0 1000 44" preserveAspectRatio="none" aria-hidden="true"><path class="process-track__base" d="M0 22H1000" /><path class="process-track__active" d="M0 22H1000" /></svg>
-          <article class="process-step"><span class="process-step__node">01</span><h3>Discover</h3><p>Understand your business, customers and goals.</p></article>
-          <article class="process-step"><span class="process-step__node">02</span><h3>Strategy</h3><p>Define the right experience and technical direction.</p></article>
-          <article class="process-step"><span class="process-step__node">03</span><h3>Design</h3><p>Create the storefront experience.</p></article>
-          <article class="process-step"><span class="process-step__node">04</span><h3>Build</h3><p>Turn the design into a scalable ecommerce store.</p></article>
-          <article class="process-step"><span class="process-step__node">05</span><h3>Optimize</h3><p>Test UX, performance and functionality.</p></article>
-          <article class="process-step"><span class="process-step__node">06</span><h3>Launch</h3><p>Launch confidently and continue improving.</p></article>
+        <div class="build-story" data-build-story>
+          <div class="build-story__stage">
+            <div class="build-story__top"><span>IDEA TO LAUNCH</span><span data-build-current>01 / IDEA</span></div>
+            <div class="build-story__layout">
+              <svg class="build-story__line" viewBox="0 0 42 600" preserveAspectRatio="none" aria-hidden="true"><path class="build-story__line-base" d="M21 4 C21 56 13 70 21 116 S29 176 21 228 S13 288 21 340 S29 400 21 452 S13 516 21 596"/><path class="build-story__line-progress" d="M21 4 C21 56 13 70 21 116 S29 176 21 228 S13 288 21 340 S29 400 21 452 S13 516 21 596"/></svg>
+              <ol class="build-steps">
+                <li class="build-step is-active" data-build-step><span class="build-step__number">01</span><div><h3>IDEA</h3><p>Start with the opportunity, the customer, and what your commerce experience needs to change.</p></div></li>
+                <li class="build-step" data-build-step><span class="build-step__number">02</span><div><h3>RESEARCH</h3><p>Understand your products, audience, current storefront, and the systems around it.</p></div></li>
+                <li class="build-step" data-build-step><span class="build-step__number">03</span><div><h3>DESIGN</h3><p>Shape a clear, branded path from discovery to checkout.</p></div></li>
+                <li class="build-step" data-build-step><span class="build-step__number">04</span><div><h3>BUILD</h3><p>Develop the Shopify experience, custom features, and integrations to support it.</p></div></li>
+                <li class="build-step" data-build-step><span class="build-step__number">05</span><div><h3>TEST</h3><p>Check the experience across real devices, content, performance, and edge cases.</p></div></li>
+                <li class="build-step" data-build-step><span class="build-step__number">06</span><div><h3>LAUNCH</h3><p>Ship with care, learn from the live store, and plan what improves next.</p></div></li>
+              </ol>
+            </div>
+          </div>
         </div>
       </section>
 

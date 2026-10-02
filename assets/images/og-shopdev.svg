@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b0d0b"/>
+  <path d="M0 470H1200M0 526H1200M0 582H1200M700 0v630M756 0v630M812 0v630M868 0v630M924 0v630M980 0v630M1036 0v630M1092 0v630M1148 0v630" stroke="#f2f3ed" stroke-opacity=".045"/>
+  <circle cx="96" cy="89" r="7" fill="#b6f36a"/>
+  <text x="119" y="98" fill="#f2f3ed" font-family="Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="4">SHOPDEV / ECOMMERCE DEVELOPMENT</text>
+  <text x="91" y="296" fill="#f2f3ed" font-family="Arial, sans-serif" font-size="91" font-weight="700" letter-spacing="-6">ECOMMERCE</text>
+  <text x="91" y="405" fill="#f2f3ed" font-family="Arial, sans-serif" font-size="91" font-weight="700" letter-spacing="-6">WEBSITES</text>
+  <text x="91" y="516" fill="#b6f36a" font-family="Arial, sans-serif" font-size="91" font-weight="700" letter-spacing="-6">THAT SELL.</text>
+  <path d="M1050 144h61l52 75-52 75h-61l-52-75 52-75Z" fill="none" stroke="#b6f36a" stroke-width="2"/>
+  <path d="M1064 219h74m-33-31 33 31-33 31" fill="none" stroke="#f2f3ed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="96" y="588" fill="#9ba297" font-family="Arial, sans-serif" font-size="17" letter-spacing="3">SHOPIFY  /  UX  /  CUSTOM DEVELOPMENT</text>
+</svg>

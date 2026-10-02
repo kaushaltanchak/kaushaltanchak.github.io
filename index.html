@@ -1,839 +1,196 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShopDev — Ecommerce Websites Built to Sell</title>
-  <!-- Tailwind Play CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"Space Grotesk"', 'monospace'],
-          },
-          colors: {
-            brand: {
-              black: '#090a0c',
-              dark: '#111317',
-              charcoal: '#1a1d24',
-              border: '#272b35',
-              borderLight: '#e4e7ec',
-              muted: '#717886',
-              mint: '#00df89',
-              mintDark: '#00b870',
-              mintGlow: 'rgba(0, 223, 137, 0.12)',
-              offwhite: '#f9fafb',
-              surface: '#f3f4f6'
-            }
-          },
-          letterSpacing: {
-            tighter: '-0.04em',
-            tight: '-0.02em',
-            widest: '0.18em',
-          }
-        }
-      }
-    }
-  </script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a09">
+  <title>ShopDev | Ecommerce Websites Built to Sell</title>
+  <meta name="description" content="ShopDev builds Shopify ecommerce websites, custom ecommerce experiences and performance-focused solutions for ambitious brands.">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ShopDev | Ecommerce Websites Built to Sell">
+  <meta property="og:description" content="ShopDev builds Shopify ecommerce websites, custom ecommerce experiences and performance-focused solutions for ambitious brands.">
+  <meta property="og:url" content="./">
+  <meta property="og:image" content="./og-image.svg">
+  <meta property="og:image:alt" content="ShopDev — Ecommerce websites built to sell.">
+  <meta property="og:site_name" content="ShopDev">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ShopDev | Ecommerce Websites Built to Sell">
+  <meta name="twitter:description" content="ShopDev builds Shopify ecommerce websites, custom ecommerce experiences and performance-focused solutions for ambitious brands.">
+  <meta name="twitter:image" content="./og-image.svg">
+  <meta name="twitter:image:alt" content="ShopDev — Ecommerce websites built to sell.">
   <style>
-    /* Custom refined animations & aesthetic scrollbar */
-    ::selection {
-      background-color: #00df89;
-      color: #090a0c;
-    }
-    html {
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-    }
-    .grid-pattern {
-      background-size: 32px 32px;
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    }
-    .editorial-border-b {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .editorial-border-t {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .editorial-border-r {
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    /* Subtle image scale */
-    .img-zoom {
-      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .group:hover .img-zoom {
-      transform: scale(1.025);
-    }
-    /* Indicator beacon */
-    @keyframes pulse-subtle {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-    .live-dot {
-      animation: pulse-subtle 2.8s infinite ease-in-out;
-    }
+    :root{color-scheme:dark;--bg:#080a09;--panel:#0d100f;--panel2:#101412;--line:#1a201d;--line2:#252c28;--text:#f3f5f3;--muted:#929a95;--dim:#68716b;--mint:#04e69b;--mint-soft:#70f5c2;--max:1180px;--pad:clamp(22px,5.4vw,84px);--ease:cubic-bezier(.2,.7,.2,1)}
+    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.11;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}
+    a{color:inherit;text-decoration:none}button{font:inherit}::selection{background:var(--mint);color:#04100b}.wrap{width:min(var(--max),100% - var(--pad)*2);margin-inline:auto}.eyebrow{color:var(--mint);font-size:10px;font-weight:750;letter-spacing:.16em;text-transform:uppercase}.section{position:relative;padding:116px 0;border-top:1px solid #121614}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:54px}.section-head h2{margin:11px 0 0;font-size:clamp(36px,5vw,60px);line-height:.98;letter-spacing:-.06em;font-weight:620}.section-head p{max-width:385px;margin:0 0 4px;color:var(--muted);font-size:14px;line-height:1.8}.btn{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:48px;padding:0 20px;border:1px solid var(--mint);border-radius:3px;background:var(--mint);color:#03130c;font-weight:750;font-size:12px;transition:transform .25s var(--ease),background .25s,border-color .25s}.btn:hover{transform:translateY(-2px);background:#48f4b3;border-color:#48f4b3}.btn .arrow{font-size:16px;line-height:1}.btn-quiet{border-color:var(--line2);background:#111412;color:var(--text)}.btn-quiet:hover{background:#1b211e;border-color:#3c4941}.text-link{display:inline-flex;align-items:center;gap:9px;color:var(--mint-soft);font-size:11px;font-weight:700}.text-link:hover{color:white}
+    .header{height:76px;position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(255,255,255,.055);background:rgba(8,10,9,.88);backdrop-filter:blur(16px)}.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:800;letter-spacing:-.06em}.brand-mark{width:24px;height:24px;border:1px solid #28332d;border-radius:6px;display:grid;place-items:center;color:var(--mint);font-size:12px}.brand span:last-child{color:var(--mint)}.navlinks{display:flex;align-items:center;gap:34px;color:#a7afa9;font-size:11px}.navlinks a{transition:color .2s}.navlinks a:hover{color:var(--mint)}.nav-cta{min-height:37px;padding:0 15px;font-size:10px}.menu-toggle{display:none;width:40px;height:40px;border:1px solid var(--line2);background:transparent;color:white;border-radius:3px;cursor:pointer}.menu-toggle span,.menu-toggle::before,.menu-toggle::after{content:"";display:block;width:16px;height:1px;background:currentColor;margin:4px auto}
+    .hero{padding:90px 0 50px;overflow:hidden}.hero-kicker{display:inline-flex;align-items:center;gap:9px;padding:6px 10px;border:1px solid #18392c;border-radius:99px;color:#86eec2;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.pulse{width:6px;height:6px;background:var(--mint);border-radius:50%;box-shadow:0 0 12px #00e994}.hero h1{max-width:830px;margin:25px 0 18px;font-size:clamp(48px,8.3vw,96px);line-height:.92;letter-spacing:-.078em;font-weight:620}.hero h1 em{font-style:normal;color:var(--mint)}.hero-copy{max-width:465px;color:var(--muted);font-size:16px;line-height:1.8}.hero-actions{display:flex;gap:11px;margin-top:29px}.hero-stage{margin-top:58px;position:relative;min-height:390px;border:1px solid #29302c;border-radius:7px;background:#101311;overflow:hidden;box-shadow:0 30px 90px #0008}.stage-top{height:38px;border-bottom:1px solid #282e2a;display:flex;align-items:center;justify-content:space-between;padding:0 15px;color:#7a837d;font:10px ui-monospace,SFMono-Regular,Consolas,monospace}.stage-dots{display:flex;gap:5px}.stage-dots i{width:5px;height:5px;border-radius:50%;background:#35403a}.stage-status{color:var(--mint)}.stage-body{min-height:352px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;padding:44px clamp(24px,6vw,90px);background:radial-gradient(ellipse at 82% 46%,#153c2b99 0,transparent 43%),linear-gradient(120deg,#111613,#0a0d0b 70%)}.stage-copy small{color:var(--mint);font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}.stage-copy h2{font-size:clamp(27px,4.5vw,52px);letter-spacing:-.065em;line-height:.98;margin:13px 0}.stage-copy p{max-width:350px;color:#9ba59e;font-size:12px;line-height:1.8}.stage-pill{display:inline-flex;margin-top:9px;padding:7px 10px;border:1px solid #314239;border-radius:3px;color:#c4e4d4;font-size:9px}.stage-window{position:relative;min-height:215px;padding:15px;border:1px solid #35433b;border-radius:6px;background:#0b0f0d;box-shadow:0 20px 55px #0009;transform:perspective(900px) rotateY(-7deg) rotateX(2deg)}.window-bar{display:flex;justify-content:space-between;padding-bottom:11px;border-bottom:1px solid #252d28;color:#79847d;font:8px ui-monospace,monospace}.window-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:13px;padding-top:15px}.product-visual{min-height:138px;border-radius:3px;background:linear-gradient(135deg,#183226,#0d1712);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.product-visual::before,.product-visual::after{content:"";position:absolute;border:1px solid #4c8e6d66;transform:rotate(35deg);width:118px;height:160px}.product-visual::after{width:82px;height:122px;border-color:#6fe4a044}.product-orb{width:66px;height:66px;border-radius:50%;background:radial-gradient(circle at 35% 32%,#aaf3cb,#498f69 45%,#173c29 76%);box-shadow:0 12px 32px #06170d;z-index:1}.product-info strong{display:block;font-size:12px}.product-info p{font-size:8px;color:#87928b}.product-info b{display:block;margin-top:22px;color:var(--mint);font-size:12px}.window-cta{display:block;margin-top:10px;padding:8px;text-align:center;background:var(--mint);color:#03140b;border-radius:2px;font-size:8px;font-weight:800}.stage-float{position:absolute;right:clamp(14px,5vw,65px);bottom:25px;padding:10px 13px;background:#151c18;border:1px solid #34443a;border-radius:3px;color:#c9d1cb;font-size:9px;box-shadow:0 10px 24px #0008}.stage-float b{color:var(--mint);font-weight:700}.capability-row{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:31px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.capability{padding:18px 12px 17px 0;color:#c7cec9;font-size:11px}.capability::before{content:"";display:inline-block;width:5px;height:5px;margin:0 9px 1px 0;border-radius:50%;background:var(--mint)}
+    .work-list{display:grid;gap:18px}.project{display:grid;grid-template-columns:.9fr 1.1fr;min-height:275px;border:1px solid var(--line);background:#0a0d0b;transition:border-color .25s,transform .25s}.project:nth-child(even){grid-template-columns:1.1fr .9fr}.project:nth-child(even) .project-info{order:2}.project:nth-child(even) .project-art{order:1}.project:hover{border-color:#354239;transform:translateY(-2px)}.project-info{padding:clamp(24px,4vw,46px);display:flex;flex-direction:column;justify-content:center}.project-no{color:var(--mint);font-size:9px;font-weight:750;letter-spacing:.15em}.project h3{margin:12px 0 8px;font-size:clamp(22px,3vw,34px);line-height:1.08;letter-spacing:-.05em}.project h4{margin:0;color:#d5dbd6;font-size:12px;font-weight:650}.project p{max-width:440px;margin:14px 0 16px;color:var(--muted);font-size:12px;line-height:1.8}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{padding:5px 8px;border:1px solid #252d28;border-radius:2px;color:#9eaaa2;font-size:9px}.project-art{min-height:245px;display:grid;place-items:center;padding:28px;background:radial-gradient(ellipse at center,#17231c 0, #0d110f 62%,#0a0d0b 100%);border-left:1px solid var(--line)}.project:nth-child(even) .project-art{border-left:0;border-right:1px solid var(--line)}.art-frame{width:min(100%,390px);padding:11px;border:1px solid #3a443e;border-radius:5px;background:#101512;box-shadow:0 22px 40px #0008;transform:perspective(700px) rotateY(-5deg)}.project:nth-child(even) .art-frame{transform:perspective(700px) rotateY(5deg)}.art-browser{height:12px;margin-bottom:10px;display:flex;gap:4px;align-items:center;border-bottom:1px solid #28312b;padding-bottom:8px}.art-browser i{width:4px;height:4px;border-radius:50%;background:#607067}.art-shop{display:grid;grid-template-columns:1fr .72fr;gap:10px;min-height:139px}.art-visual{position:relative;overflow:hidden;min-height:139px;border-radius:2px;background:linear-gradient(135deg,#1e3125,#101a14 65%,#283b30)}.art-visual::before{content:"";position:absolute;width:105px;height:105px;left:50%;top:50%;transform:translate(-50%,-45%);border-radius:50%;background:radial-gradient(circle at 33% 28%,#e0ede4,#84948a 32%,#4a5d50 66%,#223428);box-shadow:0 15px 32px #0009}.art-visual.cable{background:linear-gradient(145deg,#131715,#202925)}.art-visual.cable::before{width:72px;height:125px;border-radius:24px;background:linear-gradient(90deg,#cbd0cc,#727b75 22%,#e5e9e6 52%,#6c756e 80%);box-shadow:0 17px 28px #000}.art-visual.capsule{background:linear-gradient(140deg,#27231c,#51483a 60%,#191916)}.art-visual.capsule::before{width:100px;height:75px;border-radius:38px 38px 10px 10px;background:linear-gradient(145deg,#d2bc9e,#8b765b 60%,#554a3d)}.art-copy{padding:10px 2px}.art-copy i{display:block;width:55%;height:4px;margin:4px 0;background:#657269;border-radius:5px}.art-copy i:first-child{width:70%;background:#b3beb5}.art-copy i:last-child{width:35%;margin-top:14px;background:var(--mint)}.project-caption{color:#718078;font-size:8px;text-align:center;margin-top:12px}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid var(--line);border-top:1px solid var(--line)}.service{min-height:205px;padding:27px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(145deg,#0c100e,#090b0a);transition:background .25s}.service:hover{background:#101612}.service-num{color:var(--mint);font-size:9px;font-weight:750;letter-spacing:.12em}.service h3{font-size:17px;letter-spacing:-.035em;margin:17px 0 9px}.service p{max-width:310px;color:var(--muted);font-size:12px;line-height:1.8;margin:0}
+    .problems{padding:82px 0}.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.problem{padding:27px 26px 28px 0}.problem+.problem{padding-left:26px;border-left:1px solid var(--line)}.problem-no{color:var(--mint);font-size:10px;font-weight:750;letter-spacing:.12em}.problem h3{margin:14px 0 8px;font-size:19px;letter-spacing:-.04em}.problem p{margin:0;color:var(--muted);font-size:12px;line-height:1.8}
+    .ai-intro{max-width:760px}.ai-intro h2{font-size:clamp(37px,6vw,66px);line-height:.98;letter-spacing:-.065em;margin:13px 0 17px;font-weight:620}.ai-intro h2 span{color:var(--mint)}.ai-intro p{max-width:640px;color:var(--muted);font-size:14px;line-height:1.8}.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:45px}.principle{min-height:170px;padding:21px;border:1px solid var(--line);background:#0c100e;transition:border-color .25s,transform .25s}.principle:hover{border-color:#35483d;transform:translateY(-3px)}.principle-icon{width:22px;height:22px;display:grid;place-items:center;border:1px solid #18402e;border-radius:3px;color:var(--mint);font-size:11px}.principle h3{margin:19px 0 7px;font-size:13px}.principle p{margin:0;color:var(--muted);font-size:10px;line-height:1.8}
+    .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.step{position:relative;min-height:142px;padding:20px;border:1px solid var(--line);background:var(--panel);transition:border-color .3s,background .3s}.step:hover,.step.active{border-color:#235a3f;background:#0e1511}.step-top{display:flex;justify-content:space-between;align-items:center;color:#67736b;font-size:9px;letter-spacing:.1em}.step-top b{color:var(--mint);font-size:9px}.step h3{margin:16px 0 7px;font-size:14px;letter-spacing:.02em}.step p{margin:0;max-width:285px;color:var(--muted);font-size:10px;line-height:1.7}.step.active::after{content:"";position:absolute;left:0;bottom:0;width:var(--progress,40%);height:2px;background:var(--mint);transition:width .35s}
+    .about{display:grid;grid-template-columns:1fr 1.2fr;gap:70px;align-items:start;padding-left:26px;border-left:1px solid var(--mint)}.about h2{margin:12px 0 0;font-size:clamp(34px,5vw,54px);line-height:.99;letter-spacing:-.06em}.about-copy{color:#b3bbb6;font-size:14px;line-height:1.9;margin:0}.about-points{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:33px}.about-point{padding-top:15px;border-top:1px solid var(--line2)}.about-point strong{display:block;font-size:11px;margin-bottom:7px}.about-point span{display:block;color:var(--muted);font-size:10px;line-height:1.7}
+    .cta-section{border-top:1px solid var(--line);text-align:center;padding:110px 0 120px;background:radial-gradient(ellipse at 50% 100%,#10251b88,transparent 55%)}.cta-section h2{max-width:730px;margin:14px auto 15px;font-size:clamp(44px,7vw,78px);line-height:.95;letter-spacing:-.075em}.cta-section>div>p{max-width:480px;margin:0 auto;color:var(--muted);font-size:14px;line-height:1.8}.cta-actions{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:28px}.cta-note{color:#d7e1da;font-size:11px}.footer{border-top:1px solid var(--line);padding:34px 0 25px}.footer-top{display:grid;grid-template-columns:1.1fr 1.5fr 1fr;align-items:start;gap:30px}.footer-brand p{max-width:215px;color:var(--muted);font-size:11px;margin:11px 0}.footer-nav{display:flex;justify-content:center;gap:24px;color:#9ba49e;font-size:10px}.footer-social{display:flex;justify-content:flex-end;gap:18px;color:#9ba49e;font-size:10px}.footer a:hover{color:var(--mint)}.footer-bottom{display:flex;justify-content:space-between;gap:20px;margin-top:35px;padding-top:16px;border-top:1px solid #151a17;color:#68716b;font-size:9px}.footer-bottom span:last-child{color:#8b968e}
+    /* Replaceable image slots: add a verified screenshot URL to a project's image field. */
+    .hero-image{display:block;width:100%;height:clamp(260px,39vw,460px);object-fit:cover;object-position:center}.project{min-height:0;grid-template-columns:.82fr 1.18fr;border:0;border-bottom:1px solid var(--line);background:transparent;transition:border-color .25s}.project:first-child{border-top:1px solid var(--line)}.project:nth-child(even){grid-template-columns:1.18fr .82fr}.project:hover{transform:none;border-color:#3c4941}.project-info{padding:clamp(24px,4vw,48px) 34px}.project h3{font-size:clamp(25px,3vw,36px)}.project p{max-width:440px;color:#b1bab4;font-size:14px;line-height:1.75}.project-art,.project:nth-child(even) .project-art{min-height:0;align-self:stretch;padding:20px;border:0;background:transparent;display:flex;align-items:center;justify-content:center}.project-image{display:block;width:100%;height:clamp(260px,34vw,420px);object-fit:cover;object-position:center;border:1px solid #303a34;border-radius:4px;box-shadow:0 18px 48px #0008;background:#111613}.project-graphic{width:100%;min-height:clamp(260px,34vw,420px);padding:28px;border:1px solid #2c3730;border-radius:4px;background:linear-gradient(145deg,#111714,#0a0d0b);display:flex;flex-direction:column;justify-content:space-between}.graphic-top{display:flex;justify-content:space-between;color:#9ba69f;font:10px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase}.graphic-name{font-size:clamp(25px,3.5vw,44px);line-height:1;letter-spacing:-.07em;font-weight:650}.graphic-rule{height:1px;background:linear-gradient(90deg,var(--mint) 0 14%,#2b3730 14%)}.hero-stage.has-real-image .stage-body{display:none}.hero-stage.has-real-image .hero-image{height:clamp(320px,43vw,540px)}.footer-social small{color:#657068;font-size:8px}.footer-social a[aria-disabled=true]{cursor:default;color:#818a84}.footer-social a[aria-disabled=true]:hover{color:#818a84}
+    body{font-size:16px}.nav .brand{font-size:19px}.brand-mark{width:28px;height:28px;font-size:14px}.hero-copy,.section-head p,.ai-intro p,.about-copy{color:#aab3ad}.service p,.principle p,.step p,.problem p,.about-point span{color:#aab3ad;font-size:13px;line-height:1.8}.service p{font-size:13px}.principle p{font-size:12px}.step p{font-size:12px}
+    .problem-grid{grid-template-columns:repeat(3,1fr);border:0;gap:0}.problem{padding:24px 24px 24px 0;border-top:1px solid var(--line)}.problem+.problem{padding-left:24px;border-left:0;border-top:1px solid var(--line)}.problem-no{display:block;font-size:40px;line-height:1;font-weight:550;letter-spacing:-.06em;color:var(--mint)}.problem h3{margin:20px 0 9px;font-size:18px}.problem p{max-width:290px}.about{grid-template-columns:.8fr 1.2fr;gap:clamp(36px,8vw,110px);padding:clamp(32px,6vw,74px) 0 clamp(32px,6vw,74px) clamp(22px,3vw,42px);border-left:1px solid var(--mint);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.about h2{font-size:clamp(38px,5vw,56px)}
+    @media(max-width:800px){.project,.project:nth-child(even){grid-template-columns:.9fr 1.1fr}.project-info{padding:24px 20px}.project-art,.project:nth-child(even) .project-art{padding:14px}.project-image,.project-graphic{height:300px;min-height:300px}.problem{padding-right:16px}.problem+.problem{padding-left:16px}.problem-no{font-size:34px}.about{gap:34px}}
+    @media(max-width:600px){.project,.project:nth-child(even){grid-template-columns:1fr;gap:0}.project-info,.project:nth-child(even) .project-info{order:1;padding:24px 4px 12px}.project-art,.project:nth-child(even) .project-art{order:2;padding:12px 0 20px}.project-image,.project-graphic{height:250px;min-height:250px}.project-graphic{padding:20px}.project p{font-size:14px}.problem-grid{grid-template-columns:1fr}.problem,.problem+.problem{display:grid;grid-template-columns:58px 1fr;column-gap:15px;align-items:start;padding:20px 0}.problem-no{grid-row:1/3;font-size:32px}.problem h3{margin:3px 0 6px}.problem p{grid-column:2}.about{grid-template-columns:1fr;gap:18px;padding:28px 0 28px 18px}.about-points{grid-template-columns:repeat(3,1fr)}.about-point span{font-size:11px}}
+    @media(max-width:380px){.project-image,.project-graphic{height:230px;min-height:230px}.problem,.problem+.problem{grid-template-columns:49px 1fr;column-gap:11px}.problem-no{font-size:29px}.about-points{grid-template-columns:1fr}}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:800px){:root{--pad:30px}.header{height:68px}.navlinks{gap:21px}.nav-cta{padding:0 11px}.hero{padding-top:72px}.section{padding:88px 0}.section-head{gap:25px;margin-bottom:38px}.project{min-height:240px}.project-art{min-height:220px}.service{min-height:190px;padding:21px}.principles{grid-template-columns:repeat(2,1fr)}.principle{min-height:145px}.about{gap:34px}.footer-top{grid-template-columns:1fr 1.5fr}.footer-social{grid-column:2;justify-content:center}.footer-nav{justify-content:flex-end}}
+    @media(max-width:600px){:root{--pad:22px}.header{height:64px}.menu-toggle{display:block}.navlinks{display:none;position:absolute;top:63px;left:0;right:0;padding:15px var(--pad) 20px;background:#0a0d0b;border-bottom:1px solid var(--line);align-items:stretch;gap:0;flex-direction:column}.navlinks.open{display:flex}.navlinks a{padding:12px 0;border-bottom:1px solid #151a17}.navlinks a:last-child{border:0}.hero{padding-top:65px}.hero h1{font-size:clamp(47px,13vw,70px)}.hero-copy{font-size:14px}.hero-actions{gap:8px}.btn{min-height:45px;padding:0 13px;font-size:10px}.hero-stage{margin-top:40px;min-height:0}.stage-top{height:34px;font-size:8px;padding:0 10px}.stage-body{grid-template-columns:1fr;gap:23px;padding:28px 20px 34px}.stage-copy h2{font-size:38px}.stage-copy p{font-size:11px}.stage-window{min-height:185px;transform:none}.window-layout{min-height:122px}.product-visual{min-height:122px}.stage-float{bottom:10px;right:10px}.capability-row{grid-template-columns:repeat(2,1fr);margin-top:22px}.capability{padding:12px 5px;font-size:10px}.section{padding:75px 0}.section-head{align-items:flex-start;flex-direction:column;gap:14px;margin-bottom:30px}.section-head h2{font-size:42px}.section-head p{font-size:12px}.project,.project:nth-child(even){grid-template-columns:1fr}.project-info{padding:24px}.project-art,.project:nth-child(even) .project-art{min-height:190px;order:2;border:0;border-top:1px solid var(--line);padding:20px}.project:nth-child(even) .project-info{order:1}.art-shop{min-height:105px}.art-visual{min-height:105px}.services{grid-template-columns:1fr 1fr}.service{min-height:180px;padding:17px}.service h3{font-size:15px}.service p{font-size:11px}.problems{padding:62px 0}.problem-grid{grid-template-columns:1fr}.problem{padding:20px 0}.problem+.problem{padding:20px 0;border-left:0;border-top:1px solid var(--line)}.problem h3{margin:8px 0}.principles{gap:8px;margin-top:29px}.principle{padding:16px;min-height:145px}.principle h3{margin-top:13px}.process-grid{grid-template-columns:repeat(2,1fr);gap:8px}.step{min-height:150px;padding:15px}.step p{font-size:10px}.about{grid-template-columns:1fr;gap:20px;padding-left:18px}.about h2{font-size:42px}.about-copy{font-size:12px}.about-points{gap:12px;margin-top:24px}.about-point strong{font-size:10px}.about-point span{font-size:9px}.cta-section{padding:78px 0 83px}.cta-section h2{font-size:50px}.cta-section>div>p{font-size:12px}.cta-actions{flex-direction:column;gap:13px}.footer-top{grid-template-columns:1fr 1fr;gap:22px}.footer-brand{grid-column:1/-1}.footer-nav{justify-content:flex-start;gap:14px;flex-wrap:wrap}.footer-social{grid-column:auto;justify-content:flex-end;flex-wrap:wrap;gap:14px}.footer-bottom{margin-top:26px;font-size:8px}}
+    @media(max-width:380px){:root{--pad:18px}.hero h1{font-size:46px}.hero-actions .btn{padding:0 10px;gap:8px}.services{grid-template-columns:1fr}.service{min-height:0}.about-points{grid-template-columns:1fr}.about-point{display:grid;grid-template-columns:.9fr 1.3fr;gap:12px}.about-point strong{margin:0}.footer-top{grid-template-columns:1fr}.footer-nav,.footer-social{grid-column:auto;justify-content:flex-start}}
+    @media(max-width:600px){.service p{font-size:12px}.principle p,.step p,.problem p,.about-point span{font-size:11px}.about-copy{font-size:13px}.project-image,.project-graphic{height:clamp(240px,70vw,300px);min-height:clamp(240px,70vw,300px)}}
+    @media(max-width:380px){.project-image,.project-graphic{height:230px;min-height:230px}.about-point span{font-size:11px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+    .nav-cta{min-height:0;padding:8px 0;border:0;border-radius:0;background:transparent;color:var(--mint);font-size:11px;gap:7px;box-shadow:none}.nav-cta:hover{transform:translateY(-1px);border:0;background:transparent;color:#9af8d1}
+    /* Readable type and full-size, real storefront images for the case studies. */
+    body{font-size:16px;line-height:1.65;color:var(--text)}
+    .eyebrow,.service-num,.step-top,.project-no,.project-category{font-size:12px}
+    .navlinks{font-size:14px;gap:30px}
+    .nav-cta{font-size:13px}
+    .btn{font-size:14px;font-weight:500;line-height:1;min-height:44px;padding:0 18px;gap:12px}
+    .hero-copy,.section-head p,.ai-intro p,.about-copy{font-size:16px;line-height:1.8;color:#b5bdb8}
+    .stage-top{font-size:11px}.stage-copy small{font-size:12px}.stage-copy p{font-size:15px;color:#b5bdb8}.stage-pill{font-size:12px}.window-bar{font-size:10px}.product-info strong,.product-info b{font-size:13px}.stage-float{font-size:12px}
+    .capability{font-size:14px;color:#d1d8d3}
+    #work .section-head p{font-size:16px;max-width:460px}
+    .work-list{gap:64px}
+    .project,.project:nth-child(even){display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:center;gap:clamp(28px,4.5vw,68px);min-height:0;margin:0;padding:0 0 56px;border:0;border-bottom:1px solid var(--line);background:transparent;transition:none}
+    .project:first-child{border-top:1px solid var(--line);padding-top:34px}
+    .project:nth-child(even){grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr)}
+    .project:nth-child(even) .project-info{order:2}.project:nth-child(even) .project-gallery{order:1}
+    .project-info{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:14px 0}
+    .project-no{font-size:16px;color:var(--mint);letter-spacing:.08em;font-weight:650}
+    .project-category{margin-top:10px;color:#aab4ad;font-size:13px;letter-spacing:.11em;text-transform:uppercase}
+    .project h3{margin:17px 0 4px;font-size:clamp(22px,2.1vw,28px);line-height:1.2;letter-spacing:-.035em;color:#f3f5f3}
+    .project h4{margin:3px 0 12px;font-size:clamp(25px,3vw,39px);line-height:1.08;letter-spacing:-.055em;font-weight:620;color:#f3f5f3}
+    .project p{max-width:470px;margin:0 0 20px;color:#b5bdb8;font-size:16px;line-height:1.75}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+    .tag{padding:6px 10px;border:1px solid #303a34;border-radius:2px;color:#c4ccc6;font-size:13px;line-height:1.35}
+    .project-link{display:inline-flex;align-items:center;gap:9px;margin-top:24px;color:var(--mint);font-size:15px;font-weight:600;transition:color .2s}
+    .project-link:hover{color:#a5ffd8}.project-link span{font-size:17px}
+    .project-gallery{min-width:0;width:100%}.project-main,.project-supporting figure{margin:0;overflow:hidden;border:1px solid #303a34;border-radius:4px;background:#0d100f;box-shadow:0 16px 46px #0006,0 0 40px #04e69b0a}
+    .project-main{aspect-ratio:16/10}.project-main picture{display:block;width:100%;height:100%}.project-main img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}
+    .project-supporting{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.project-supporting figure img{display:block;width:100%;height:clamp(120px,13vw,180px);object-fit:cover;object-position:top center}.project-supporting figcaption{padding:7px 10px;color:#aeb8b1;font-size:12px;line-height:1.35}.project-desktop-view{display:none!important}
+    .service p{font-size:15px;line-height:1.8;color:#b5bdb8}.service-num{font-size:12px}.principle{min-height:190px}.principle h3{font-size:15px}.principle p{font-size:15px;line-height:1.75;color:#b5bdb8}
+    .step{min-height:160px}.step-top{font-size:12px}.step h3{font-size:15px}.step p{font-size:15px;line-height:1.75;color:#b5bdb8}
+    .problem p{font-size:15px;line-height:1.8;color:#b5bdb8}.about-copy{font-size:16px}.about-point strong{font-size:14px}.about-point span{font-size:15px;line-height:1.7;color:#b5bdb8}
+    @media(max-width:900px){.navlinks{font-size:13px;gap:20px}.project,.project:nth-child(even){grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:26px}.project h4{font-size:clamp(24px,3vw,32px)}.project-supporting{gap:9px}.project-supporting figcaption{font-size:12px}.service p,.principle p,.step p,.problem p,.about-point span{font-size:15px}}
+    @media(max-width:600px){body{font-size:16px}.navlinks{font-size:14px}.nav-cta{font-size:13px}.btn{font-size:15px;min-height:46px;padding:0 16px}.hero-copy,.section-head p,.ai-intro p,.about-copy{font-size:16px}.capability-row{grid-template-columns:repeat(2,1fr)}.capability{font-size:14px}.work-list{gap:42px}.project,.project:nth-child(even){grid-template-columns:minmax(0,1fr);gap:18px;padding-bottom:38px}.project-info,.project:nth-child(even) .project-info{order:1;padding:8px 0}.project-gallery,.project:nth-child(even) .project-gallery{order:2}.project-main{aspect-ratio:390/844}.project-main img{object-position:top center}.project-supporting{grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.project-supporting figure img{height:clamp(120px,40vw,170px)}.project-desktop-view{display:block!important}.project-mobile-view{display:none!important}.project-category{font-size:12px}.project h3{font-size:23px}.project h4{font-size:clamp(25px,7vw,32px)}.project p{font-size:15px}.tag{font-size:13px}.project-link{font-size:15px}.service p,.principle p,.step p,.problem p,.about-point span{font-size:15px}.service{min-height:0}.step{min-height:155px}.principles{grid-template-columns:1fr 1fr}.about-points{grid-template-columns:1fr;gap:12px}}
+    @media(max-width:380px){.project h4{font-size:25px}.project-main{aspect-ratio:390/844}.project-supporting figcaption{font-size:12px}.navlinks{gap:16px}}
+    .hero-kicker{font-size:12px}.product-info p{font-size:11px;color:#aab4ad}.window-cta{font-size:11px}
+    .footer-brand p{font-size:14px;line-height:1.6;color:#aeb8b1}.footer-nav,.footer-social{font-size:13px;line-height:1.5}.footer-social small{font-size:12px}.footer-bottom{font-size:12px;line-height:1.5}.cta-note{font-size:13px}
+    /* Editorial capabilities bridge the hero and work without a card or boxed strip. */
+    .hero{padding-bottom:32px}
+    .capabilities-editorial{margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
+    .capabilities-heading{display:flex;align-items:baseline;gap:16px;margin-bottom:14px}
+    .capabilities-heading .eyebrow{font-size:12px;white-space:nowrap}
+    .capabilities-heading h2{margin:0;font-size:clamp(21px,2.3vw,27px);line-height:1.15;letter-spacing:-.045em;font-weight:580}
+    .capabilities-content{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.8fr);align-items:center;gap:38px}
+    .capabilities-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:9px;margin:0;padding:0;list-style:none}
+    .capabilities-list li{color:#d4dbd6;font-size:19px;line-height:1.35;letter-spacing:-.025em}
+    .capabilities-content p{max-width:410px;margin:0;color:#b5bdb8;font-size:16px;line-height:1.65}
+    #work{padding-top:78px}
+    @media(max-width:900px){.capabilities-content{grid-template-columns:minmax(0,1.4fr) minmax(220px,.8fr);gap:24px}.capabilities-list{column-gap:14px}.capabilities-list li{font-size:18px}}
+    @media(max-width:700px){.capabilities-heading{align-items:flex-start;flex-direction:column;gap:7px}.capabilities-content{grid-template-columns:1fr;gap:14px}.capabilities-list{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:8px}.capabilities-list li{font-size:18px}.capabilities-content p{max-width:560px}.capabilities-editorial{margin-top:24px;padding-top:17px}#work{padding-top:58px}}
   </style>
 </head>
-<body class="bg-brand-black text-brand-offwhite font-sans antialiased selection:bg-brand-mint selection:text-brand-black">
-
-  <!-- ========================================================================= -->
-  <!-- NAVIGATION BAR (STICKY, MINIMAL, SOPHISTICATED) -->
-  <!-- ========================================================================= -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-brand-black/80 border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      
-      <!-- Brand Logo / Wordmark -->
-      <a href="#" class="flex items-center gap-3.5 group">
-        <div class="w-9 h-9 rounded-md bg-white/5 border border-white/10 flex items-center justify-center p-1.5 transition-colors group-hover:border-brand-mint/40 group-hover:bg-white/10">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQehfjh2ZsAtyCA6EdLxcusvswR9_zZp1Byk7RhAJwbIWrJqBwze2f7jCnDaHuA_bvShu7dSjkMDc4DwW03wzEbznQTVHPFg9InShQt7GeNDiq6md5rv24LasMEpO6P3GJUzv94l958m8wxqHOFvM5S46opWCOaYMHEGhjlPbD4IC1TuhuGof3JCrIpEMBOwuMy9NaCHZgXPpvectRIp02qYquNm37VXdySeswtlxVDKdMCGPeel9p" alt="ShopDev Logo" class="w-full h-full object-contain">
-        </div>
-        <div class="flex items-center">
-          <span class="text-xl font-bold tracking-tight text-white group-hover:text-white transition-colors font-mono">ShopDev</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-mint ml-1.5 shadow-[0_0_8px_#00df89]"></span>
-        </div>
-      </a>
-
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center space-x-10 text-[13px] tracking-widest uppercase font-mono text-zinc-400">
-        <a href="#work" class="hover:text-brand-mint transition-colors duration-200">Work</a>
-        <a href="#services" class="hover:text-brand-mint transition-colors duration-200">Services</a>
-        <a href="#why-shopdev" class="hover:text-brand-mint transition-colors duration-200">Philosophy</a>
-        <a href="#process" class="hover:text-brand-mint transition-colors duration-200">Process</a>
-        <a href="#about" class="hover:text-brand-mint transition-colors duration-200">About</a>
-      </nav>
-
-      <!-- Primary Action CTA -->
-      <div class="flex items-center gap-4">
-        <div class="hidden lg:flex items-center gap-2 text-xs font-mono text-zinc-400 bg-white/[0.03] border border-white/10 px-3 py-1.5 rounded-full">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-mint live-dot"></span>
-          <span>Q3 Available for 2 Builds</span>
-        </div>
-        <a href="#contact" class="inline-flex items-center gap-2 text-xs tracking-wider uppercase font-mono px-5 py-2.5 rounded-sm bg-brand-mint text-brand-black font-semibold hover:bg-white hover:text-black transition-all duration-200 shadow-[0_2px_15px_rgba(0,223,137,0.25)]">
-          <span>Start a Project</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-      </div>
-    </div>
+<body>
+  <header class="header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="ShopDev home"><span class="brand-mark">S</span><span>Shop<span>Dev</span></span></a>
+      <div class="navlinks" id="navlinks"><a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#about">About</a></div>
+      <a class="btn nav-cta" href="#contact">Let's Build <span class="arrow">↗</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+    </nav>
   </header>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 1 — HERO SECTION -->
-  <!-- ========================================================================= -->
-  <section class="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden grid-pattern border-b border-white/10">
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-black/60 to-brand-black pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      
-      <!-- Sub-tagline badge -->
-      <div class="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/[0.04] mb-8">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-mint shadow-[0_0_6px_#00df89]"></span>
-        <span class="text-xs font-mono tracking-widest text-brand-mint uppercase font-semibold">Specialized Shopify & DTC Engineering Studio</span>
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-kicker"><i class="pulse"></i> Shopify development &amp; ecommerce growth</div>
+      <h1 id="hero-title">We build ecommerce<br>websites that <em>sell.</em></h1>
+      <p class="hero-copy">Shopify development, ecommerce UX and custom solutions for ambitious brands.</p>
+      <div class="hero-actions"><a class="btn" href="#contact">Start a Project <span class="arrow">→</span></a><a class="btn btn-quiet" href="#work">View Our Work</a></div>
+      <div class="hero-stage" id="hero-stage" aria-label="Shopify storefront concept illustration">
+        <div class="stage-top"><span class="stage-dots"><i></i><i></i><i></i></span><span>shopdev.studio / storefront</span><span class="stage-status">● &nbsp;Store experience</span></div>
+        <div class="stage-body"><div class="stage-copy"><small>Designed around the customer</small><h2>A better way<br>to shop online.</h2><p>Thoughtful ecommerce experiences, built to help ambitious brands grow with confidence.</p><span class="stage-pill">Shopify storefront&nbsp; · &nbsp;Built for growth</span></div><div class="stage-window"><div class="window-bar"><span>YOUR BRAND&nbsp; / &nbsp;SHOP</span><span>SEARCH　 ACCOUNT　 BAG</span></div><div class="window-layout"><div class="product-visual"><i class="product-orb"></i></div><div class="product-info"><strong>Everyday, considered.</strong><p>Made with care.<br>Designed to last.</p><b>$48.00</b><span class="window-cta">ADD TO BAG&nbsp; +</span></div></div></div></div>
+        <div class="stage-float"><b>●</b> &nbsp;Storefront, made for your business</div>
       </div>
-
-      <!-- Main Editorial Headline -->
-      <div class="max-w-4xl">
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-bold tracking-tighter leading-[1.05] text-white">
-          We build ecommerce websites that <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-brand-mint">sell.</span>
-        </h1>
-        <p class="mt-8 text-lg sm:text-xl md:text-2xl text-zinc-400 font-light max-w-2xl leading-relaxed">
-          Shopify development, custom ecommerce experiences, and performance-focused builds for ambitious, high-growth brands.
-        </p>
-
-        <!-- CTA Cluster -->
-        <div class="mt-10 flex flex-wrap items-center gap-4 sm:gap-6">
-          <a href="#contact" class="inline-flex items-center gap-3 px-7 py-4 rounded-sm bg-brand-mint text-brand-black font-semibold text-sm font-mono tracking-wide uppercase hover:bg-white transition-all shadow-[0_0_24px_rgba(0,223,137,0.3)]">
-            <span>Start a Project</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </a>
-          <a href="#work" class="inline-flex items-center gap-3 px-7 py-4 rounded-sm bg-white/5 border border-white/10 text-white font-mono text-sm tracking-wide uppercase hover:bg-white/10 hover:border-white/20 transition-all">
-            <span>View Our Work</span>
-            <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </a>
+      <section class="capabilities-editorial" aria-labelledby="capabilities-heading">
+        <div class="capabilities-heading"><span class="eyebrow">Capabilities</span><h2 id="capabilities-heading">Built around your ecommerce.</h2></div>
+        <div class="capabilities-content">
+          <ul class="capabilities-list" aria-label="ShopDev capabilities"><li>Strategy</li><li>Ecommerce UX</li><li>Shopify</li><li>Development</li><li>Integrations</li><li>Performance</li></ul>
+          <p>From storefront design to custom functionality, we build the pieces that make an ecommerce business work better.</p>
         </div>
-      </div>
-
-      <!-- Hero Visual Composition: Multi-device real ecommerce showcase -->
-      <div class="mt-16 md:mt-24 relative">
-        <div class="p-3 sm:p-4 rounded-xl bg-gradient-to-b from-white/10 to-white/[0.02] border border-white/15 shadow-2xl backdrop-blur-sm">
-          
-          <!-- Browser Frame Chrome -->
-          <div class="flex items-center justify-between pb-3 px-3 border-b border-white/10 text-xs font-mono text-zinc-500">
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
-              <span class="ml-2 text-[11px] text-zinc-400 hidden sm:inline">shopdev.studio / client-showcase / aura-studios</span>
-            </div>
-            <div class="flex items-center gap-4 text-[11px]">
-              <span class="text-brand-mint flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>Shopify Plus Architecture</span>
-              <span class="hidden md:inline text-zinc-400">0.78s TTFB</span>
-            </div>
-          </div>
-
-          <!-- Composite Multi-surface Display -->
-          <div class="relative overflow-hidden rounded-lg bg-zinc-950 mt-3 group">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3lK0L3cdV90k-WxM5eAenwhQSb5ea0OX88pTr4ssgerdsWCpnm0urAgLf__R4bf8uLAr3uR1nYeOPijF7gH0oA9j-kUGTULsF6peTtC_lkWYt8yROfHE8HIVGm_aMLr1ucM-P02ykKrX58USqF6VDMowOUB0mhbJkgUBfGcJELn7O6pcySN4FQDFM9jImDvRv5mKUQ4OIZgomyAtFN3b242dsfNC0ysy6OiB0uYXQqZUxFD_3IuyQ" alt="Aura Studios Luxury Fashion Ecommerce Showcase" class="w-full h-auto object-cover max-h-[640px] img-zoom">
-            
-            <!-- Floating Live Architectural Specs Card (Top Right) -->
-            <div class="absolute top-4 right-4 sm:top-6 sm:right-6 hidden sm:block bg-brand-black/90 backdrop-blur-md border border-white/15 p-4 rounded-lg shadow-xl max-w-xs text-left">
-              <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
-                <span class="text-[10px] font-mono tracking-widest text-brand-mint uppercase font-semibold">Storefront Metrics</span>
-                <span class="text-[10px] font-mono text-zinc-400">Shopify Edition</span>
-              </div>
-              <div class="grid grid-cols-2 gap-3 text-xs">
-                <div>
-                  <div class="text-zinc-500 text-[10px] uppercase font-mono">Conversion Lift</div>
-                  <div class="text-white font-mono font-bold text-sm mt-0.5">+38.4%</div>
-                </div>
-                <div>
-                  <div class="text-zinc-500 text-[10px] uppercase font-mono">Lighthouse Perf</div>
-                  <div class="text-brand-mint font-mono font-bold text-sm mt-0.5">99 / 100</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Floating Sub-component: Quick Cart & Checkout Drawer Preview (Bottom Left) -->
-            <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 hidden md:flex items-center gap-4 bg-brand-black/90 backdrop-blur-md border border-white/15 px-4 py-3 rounded-lg shadow-2xl">
-              <div class="w-2.5 h-2.5 rounded-full bg-brand-mint"></div>
-              <div class="text-xs">
-                <span class="text-zinc-400 font-mono block text-[10px] uppercase">Custom Cart Architecture</span>
-                <span class="text-white font-medium">Headless Dynamic Drawer & Upsell Engine</span>
-              </div>
-              <span class="ml-2 text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-brand-mint font-semibold">Liquid / React</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Metric Ticker Strip beneath hero preview -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 text-left border-t border-white/10 mt-10">
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold font-mono text-white">$140M+</div>
-            <div class="text-xs sm:text-sm text-zinc-400 mt-1">Processed through stores we engineered</div>
-          </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold font-mono text-white">0.82s</div>
-            <div class="text-xs sm:text-sm text-zinc-400 mt-1">Average global median page load time</div>
-          </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold font-mono text-white">100%</div>
-            <div class="text-xs sm:text-sm text-zinc-400 mt-1">Shopify native standards & clean code</div>
-          </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold font-mono text-white">AI-Assisted</div>
-            <div class="text-xs sm:text-sm text-zinc-400 mt-1">3x faster discovery-to-production cycles</div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 2 — TRUST & CAPABILITIES TICKER -->
-  <!-- ========================================================================= -->
-  <section class="py-12 bg-zinc-950 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div class="max-w-xs">
-          <span class="text-xs font-mono uppercase tracking-widest text-brand-mint font-semibold block">Core Specialization</span>
-          <h2 class="text-lg font-bold text-white tracking-tight mt-1">Built around the ecommerce experience.</h2>
-        </div>
-
-        <!-- Capability Words Strip: Clean typographic layout without childish badges -->
-        <div class="flex-1 flex flex-wrap items-center justify-start md:justify-end gap-x-8 gap-y-4 text-xs sm:text-sm font-mono tracking-widest uppercase text-zinc-400">
-          <span class="hover:text-white transition-colors flex items-center gap-2"><span class="text-brand-mint">/</span> SHOPIFY</span>
-          <span class="hover:text-white transition-colors flex items-center gap-2"><span class="text-brand-mint">/</span> ECOMMERCE UX</span>
-          <span class="hover:text-white transition-colors flex items-center gap-2"><span class="text-brand-mint">/</span> CUSTOM DEVELOPMENT</span>
-          <span class="hover:text-white transition-colors flex items-center gap-2"><span class="text-brand-mint">/</span> INTEGRATIONS</span>
-          <span class="hover:text-white transition-colors flex items-center gap-2"><span class="text-brand-mint">/</span> PERFORMANCE</span>
-          <span class="hover:text-white transition-colors flex items-center gap-2"><span class="text-brand-mint">/</span> AI-ASSISTED WORKFLOWS</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 3 — SELECTED WORK (EDITORIAL PORTFOLIO CARDS) -->
-  <!-- ========================================================================= -->
-  <section id="work" class="py-24 md:py-36 bg-brand-black border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6">
-      
-      <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-16 border-b border-white/10">
-        <div>
-          <span class="text-xs font-mono tracking-widest text-brand-mint uppercase font-semibold">Case Studies</span>
-          <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-white mt-2">Selected work.</h2>
-        </div>
-        <p class="mt-4 md:mt-0 text-base md:text-lg text-zinc-400 max-w-md font-light">
-          Digital experiences engineered around the psychological reality of how customers browse, decide, and purchase.
-        </p>
-      </div>
-
-      <!-- Projects Stack (Alternating Editorial Layouts) -->
-      <div class="space-y-28 md:space-y-36">
-
-        <!-- PROJECT 01: Fashion / Apparel -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
-          <div class="lg:col-span-7 order-2 lg:order-1">
-            <div class="overflow-hidden rounded-lg border border-white/15 bg-zinc-900 shadow-2xl relative">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3lK0L3cdV90k-WxM5eAenwhQSb5ea0OX88pTr4ssgerdsWCpnm0urAgLf__R4bf8uLAr3uR1nYeOPijF7gH0oA9j-kUGTULsF6peTtC_lkWYt8yROfHE8HIVGm_aMLr1ucM-P02ykKrX58USqF6VDMowOUB0mhbJkgUBfGcJELn7O6pcySN4FQDFM9jImDvRv5mKUQ4OIZgomyAtFN3b242dsfNC0ysy6OiB0uYXQqZUxFD_3IuyQ" alt="Aura Studios Project Showcase" class="w-full h-auto object-cover img-zoom">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <span class="text-xs font-mono text-brand-mint tracking-wider uppercase font-semibold">Live Preview Active →</span>
-              </div>
-            </div>
-          </div>
-          <div class="lg:col-span-5 order-1 lg:order-2 lg:pl-6">
-            <div class="flex items-center gap-3 text-xs font-mono text-zinc-500 mb-3">
-              <span class="text-brand-mint font-bold">01</span>
-              <span>•</span>
-              <span class="uppercase tracking-wider">Fashion & Luxury Apparel</span>
-            </div>
-            <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Aura Studios</h3>
-            <p class="mt-4 text-zinc-400 leading-relaxed text-base font-light">
-              Complete Shopify storefront redesign for a high-end architectural fashion house. Engineered an immersive editorial lookbook, sticky bag micro-drawer, and sub-second page transitions.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2 text-xs font-mono">
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-zinc-300">Shopify Plus</span>
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-zinc-300">Custom Liquid Sections</span>
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-brand-mint font-semibold">+42% Mobile Checkout Rate</span>
-            </div>
-            <div class="mt-8">
-              <a href="#contact" class="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-white font-semibold group-hover:text-brand-mint transition-colors">
-                <span>Request Case Study Breakdown</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECT 02: Beauty / Skincare -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
-          <div class="lg:col-span-5 order-1 lg:pr-6">
-            <div class="flex items-center gap-3 text-xs font-mono text-zinc-500 mb-3">
-              <span class="text-brand-mint font-bold">02</span>
-              <span>•</span>
-              <span class="uppercase tracking-wider">Clinical Skincare & Wellness</span>
-            </div>
-            <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Kura Labs</h3>
-            <p class="mt-4 text-zinc-400 leading-relaxed text-base font-light">
-              Conversion-focused ecommerce experience with interactive clinical ingredient breakdown drawers, personalized diagnostic quiz routing, and frictionless 1-click subscription replenishment.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2 text-xs font-mono">
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-zinc-300">Recharge Subscription API</span>
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-zinc-300">Custom PDP Engine</span>
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-brand-mint font-semibold">+54% AOV Growth</span>
-            </div>
-            <div class="mt-8">
-              <a href="#contact" class="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-white font-semibold group-hover:text-brand-mint transition-colors">
-                <span>Request Case Study Breakdown</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-              </a>
-            </div>
-          </div>
-          <div class="lg:col-span-7 order-2">
-            <div class="overflow-hidden rounded-lg border border-white/15 bg-zinc-900 shadow-2xl relative">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-XrEMM25vNAXi1icDupHmEeEkxAspOa75ZgtADMyD176AoalblHMKCGUujzPP6NtmjGxOUXneL4ozuTJ553_ifSsw4aT-XIqJ_ohrCaKvVNA2QpRGluNu6Ic5bpMa4Zfe0XFeH_OWPA-e2WZtSsrCTk5WkWOp_vHXI6of9i5Fmw3PHfUBhrFVOHEhpTLcEzxuthJwd_cq29LoDdzNLm-4tbf2w5VRfBSGMFnxqJ4nud0dtmJ0Q9zu" alt="Kura Labs Clinical Skincare Storefront" class="w-full h-auto object-cover img-zoom">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <span class="text-xs font-mono text-brand-mint tracking-wider uppercase font-semibold">Live Preview Active →</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECT 03: Home / Lifestyle -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
-          <div class="lg:col-span-7 order-2 lg:order-1">
-            <div class="overflow-hidden rounded-lg border border-white/15 bg-zinc-900 shadow-2xl relative">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGyIz_GIyAfEePia5HYqR1oW2dcpdyN_SLhYvy9o6aPlaCOGvEYlaO7ytvzskYgOgjt2eAbQajU2XaCanzANWuGupcHt9O45DAW4Bz-U16PaQNeppeqrbzAmxC0rascTm6fAwVaeWnaNpUVXEi152LBbiE6lMLpTudsKnJ7IEdO7H52LGMDnCeWY4atqx-rx_ofoPgpngJDHVsb987KbzvUYz67XjHBeDYrmAMyVcYiPE9JlDdDYFY" alt="Norden Objects Furniture Ecommerce" class="w-full h-auto object-cover img-zoom">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <span class="text-xs font-mono text-brand-mint tracking-wider uppercase font-semibold">Live Preview Active →</span>
-              </div>
-            </div>
-          </div>
-          <div class="lg:col-span-5 order-1 lg:order-2 lg:pl-6">
-            <div class="flex items-center gap-3 text-xs font-mono text-zinc-500 mb-3">
-              <span class="text-brand-mint font-bold">03</span>
-              <span>•</span>
-              <span class="uppercase tracking-wider">Architectural Home & Objects</span>
-            </div>
-            <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Norden Objects</h3>
-            <p class="mt-4 text-zinc-400 leading-relaxed text-base font-light">
-              Custom Shopify storefront with live spatial upholstery material switchers, dynamic freight dimension calculation, and seamless B2B trade account portal.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2 text-xs font-mono">
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-zinc-300">Shopify B2B & Wholesale</span>
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-zinc-300">Custom Swatch Matrix</span>
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-brand-mint font-semibold">2.4x Repeat Orders</span>
-            </div>
-            <div class="mt-8">
-              <a href="#contact" class="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-white font-semibold group-hover:text-brand-mint transition-colors">
-                <span>Request Case Study Breakdown</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PROJECT 04: Consumer Tech & Audio -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
-          <div class="lg:col-span-5 order-1 lg:pr-6">
-            <div class="flex items-center gap-3 text-xs font-mono text-zinc-500 mb-3">
-              <span class="text-brand-mint font-bold">04</span>
-              <span>•</span>
-              <span class="uppercase tracking-wider">DTC Hardware & Acoustics</span>
-            </div>
-            <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Volt Acoustics</h3>
-            <p class="mt-4 text-zinc-400 leading-relaxed text-base font-light">
-              Headless performance optimization & custom modular bundle builder. Decreased store load speed by 68% while delivering interactive 360 sound-stage previews.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-2 text-xs font-mono">
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-zinc-300">Hydrogen / Headless</span>
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-zinc-300">Bundle Builder Logic</span>
-              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-brand-mint font-semibold">0.65s Page Load</span>
-            </div>
-            <div class="mt-8">
-              <a href="#contact" class="inline-flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-white font-semibold group-hover:text-brand-mint transition-colors">
-                <span>Request Case Study Breakdown</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-              </a>
-            </div>
-          </div>
-          <div class="lg:col-span-7 order-2">
-            <div class="overflow-hidden rounded-lg border border-white/15 bg-zinc-900 shadow-2xl relative">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlG7aiwigASxXWzIjWvuUhTZzbgRMMBr7oXKPjyNi6FmP-WG-Kc6DfRRKR1FYYo_KfhZvBs3lsHgJkqz8uWzS7QWFJa0SoPmgPHGx-nidpPrj7e42CxW4RiEkiuarqGC346H3AZoOASKS19aS3hpbVZWwrDIHOBKB_bF2ZKNq7Y8cR3EpxpxUst4q2JDTwrsD7dK9S-5GTHEImEs6ngNETFE5ve3818gGLAs--0DtzeLSao8qNM0n_" alt="Volt Acoustics DTC Audio Storefront" class="w-full h-auto object-cover img-zoom">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <span class="text-xs font-mono text-brand-mint tracking-wider uppercase font-semibold">Live Preview Active →</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 4 — WHAT WE DO (CAPABILITIES & EDITORIAL SERVICES) -->
-  <!-- ========================================================================= -->
-  <section id="services" class="py-24 md:py-36 bg-zinc-950 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6">
-      
-      <!-- Section Heading -->
-      <div class="max-w-3xl mb-20">
-        <span class="text-xs font-mono tracking-widest text-brand-mint uppercase font-semibold">Capabilities</span>
-        <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-white mt-2">
-          From first idea to a store ready for customers.
-        </h2>
-        <p class="mt-6 text-lg text-zinc-400 font-light">
-          We don’t treat storefronts like static brochure sites. Every line of code and interaction model is calibrated for retention, trust, and frictionless transactions.
-        </p>
-      </div>
-
-      <!-- Editorial 6-Service Grid (Architectural Lines, No Cheap Cards) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10">
-        
-        <!-- 01 Shopify Development -->
-        <div class="p-8 sm:p-10 border-b border-r border-white/10 hover:bg-white/[0.02] transition-colors duration-200">
-          <span class="text-xs font-mono text-brand-mint font-bold tracking-widest">01 / STOREFRONTS</span>
-          <h3 class="text-2xl font-bold text-white tracking-tight mt-4">Shopify Development</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Custom Shopify stores, custom themes, modular Liquid 2.0 sections, and advanced storefront functionality engineered from ground zero.
-          </p>
-          <ul class="mt-6 space-y-2 text-xs font-mono text-zinc-500">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Bespoke OS 2.0 Architecture</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Zero Bloated Third-Party Apps</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Merchant-Friendly Customizer Blocks</li>
-          </ul>
-        </div>
-
-        <!-- 02 Ecommerce Design -->
-        <div class="p-8 sm:p-10 border-b border-r border-white/10 hover:bg-white/[0.02] transition-colors duration-200">
-          <span class="text-xs font-mono text-brand-mint font-bold tracking-widest">02 / INTERFACE & UX</span>
-          <h3 class="text-2xl font-bold text-white tracking-tight mt-4">Ecommerce Design</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Clean, intuitive experiences designed around products, customer behavior, and conversion ergonomics rather than trendy graphic decoration.
-          </p>
-          <ul class="mt-6 space-y-2 text-xs font-mono text-zinc-500">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> High-Intent PDP Structure</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Micro-Interactions & Tactile Filters</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Mobile-First Ergonomic Layouts</li>
-          </ul>
-        </div>
-
-        <!-- 03 Custom Features -->
-        <div class="p-8 sm:p-10 border-b border-r border-white/10 hover:bg-white/[0.02] transition-colors duration-200">
-          <span class="text-xs font-mono text-brand-mint font-bold tracking-widest">03 / ENGINEERING</span>
-          <h3 class="text-2xl font-bold text-white tracking-tight mt-4">Custom Features</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Build the exact functionality your store needs when standard off-the-shelf Shopify features and apps fail to meet your operational requirements.
-          </p>
-          <ul class="mt-6 space-y-2 text-xs font-mono text-zinc-500">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Dynamic Bundlers & Tiered Pricing</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Custom Swatches & Measurement Calcs</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Intelligent Slide-Out Mini Carts</li>
-          </ul>
-        </div>
-
-        <!-- 04 Integrations -->
-        <div class="p-8 sm:p-10 border-b border-r border-white/10 hover:bg-white/[0.02] transition-colors duration-200">
-          <span class="text-xs font-mono text-brand-mint font-bold tracking-widest">04 / ECOSYSTEM</span>
-          <h3 class="text-2xl font-bold text-white tracking-tight mt-4">Integrations</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Seamlessly connect your storefront with your ERP, 3PL logistics, Klaviyo email automation, Recharge subscriptions, and warehouse systems.
-          </p>
-          <ul class="mt-6 space-y-2 text-xs font-mono text-zinc-500">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> ERP & 3PL API Connectors</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Recharge & Bold Subscriptions</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Custom Private Shopify Apps</li>
-          </ul>
-        </div>
-
-        <!-- 05 Migration & Optimization -->
-        <div class="p-8 sm:p-10 border-b border-r border-white/10 hover:bg-white/[0.02] transition-colors duration-200">
-          <span class="text-xs font-mono text-brand-mint font-bold tracking-widest">05 / REBUILD & SCALE</span>
-          <h3 class="text-2xl font-bold text-white tracking-tight mt-4">Migration & Optimization</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Move, rebuild, and modernize existing stores from Magento, WooCommerce, or custom stacks without losing SEO equity or historical customer data.
-          </p>
-          <ul class="mt-6 space-y-2 text-xs font-mono text-zinc-500">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Zero-Downtime Data Transfer</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> 301 Redirect Mapping & SEO Preservation</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Legacy Codebase Refactoring</li>
-          </ul>
-        </div>
-
-        <!-- 06 Performance -->
-        <div class="p-8 sm:p-10 border-b border-r border-white/10 hover:bg-white/[0.02] transition-colors duration-200">
-          <span class="text-xs font-mono text-brand-mint font-bold tracking-widest">06 / SPEED & CONVERSION</span>
-          <h3 class="text-2xl font-bold text-white tracking-tight mt-4">Performance</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Faster storefronts, cleaner implementations, and lighter scripts. We audit and remove render-blocking assets to maximize Google Core Web Vitals.
-          </p>
-          <ul class="mt-6 space-y-2 text-xs font-mono text-zinc-500">
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> 95+ Core Web Vitals Guaranteed</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Script Audits & App Decoupling</li>
-            <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-brand-mint"></span> Instantaneous Hydration Speeds</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 5 — WHY SHOPDEV (AI-ACCELERATED, HUMAN-LED) -->
-  <!-- ========================================================================= -->
-  <section id="why-shopdev" class="py-24 md:py-36 bg-brand-black border-b border-white/10 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      
-      <!-- Big Bold Statement Block -->
-      <div class="max-w-4xl pb-16 border-b border-white/10">
-        <span class="text-xs font-mono tracking-widest text-brand-mint uppercase font-semibold">The ShopDev Advantage</span>
-        <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-white mt-3 leading-[1.08]">
-          AI makes development faster. <br class="hidden sm:inline">Experience makes the decisions better.
-        </h2>
-        <p class="mt-8 text-lg sm:text-xl text-zinc-400 font-light leading-relaxed">
-          ShopDev combines deep ecommerce expertise, Shopify engineering, and modern AI-assisted workflows to move from idea to production faster — without losing the critical human strategic thinking behind a store that actually converts.
-        </p>
-      </div>
-
-      <!-- 4 Principles Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-16">
-        
-        <!-- 01 -->
-        <div class="p-6 rounded-md bg-white/[0.02] border border-white/10">
-          <div class="w-8 h-8 rounded bg-brand-mint/10 border border-brand-mint/20 text-brand-mint font-mono font-bold text-xs flex items-center justify-center mb-6">
-            01
-          </div>
-          <h4 class="text-lg font-bold text-white tracking-tight">Ecommerce Thinking</h4>
-          <p class="mt-3 text-sm text-zinc-400 leading-relaxed font-light">
-            We start with the customer journey, checkout friction points, and merchant margin — not just arbitrary lines of code.
-          </p>
-        </div>
-
-        <!-- 02 -->
-        <div class="p-6 rounded-md bg-white/[0.02] border border-white/10">
-          <div class="w-8 h-8 rounded bg-brand-mint/10 border border-brand-mint/20 text-brand-mint font-mono font-bold text-xs flex items-center justify-center mb-6">
-            02
-          </div>
-          <h4 class="text-lg font-bold text-white tracking-tight">Shopify Expertise</h4>
-          <p class="mt-3 text-sm text-zinc-400 leading-relaxed font-light">
-            We know what Shopify can do natively, where it has technical limits, and how to cleanly extend it without breaking updates.
-          </p>
-        </div>
-
-        <!-- 03 -->
-        <div class="p-6 rounded-md bg-white/[0.02] border border-white/10">
-          <div class="w-8 h-8 rounded bg-brand-mint/10 border border-brand-mint/20 text-brand-mint font-mono font-bold text-xs flex items-center justify-center mb-6">
-            03
-          </div>
-          <h4 class="text-lg font-bold text-white tracking-tight">AI-Accelerated</h4>
-          <p class="mt-3 text-sm text-zinc-400 leading-relaxed font-light">
-            AI helps us research competitors, prototype rapid component variants, and compress development cycles by weeks.
-          </p>
-        </div>
-
-        <!-- 04 -->
-        <div class="p-6 rounded-md bg-white/[0.02] border border-white/10">
-          <div class="w-8 h-8 rounded bg-brand-mint/10 border border-brand-mint/20 text-brand-mint font-mono font-bold text-xs flex items-center justify-center mb-6">
-            04
-          </div>
-          <h4 class="text-lg font-bold text-white tracking-tight">Human-Led</h4>
-          <p class="mt-3 text-sm text-zinc-400 leading-relaxed font-light">
-            Technology accelerates the mechanical work. Senior ecommerce experience guides every design, layout, and conversion decision.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 6 — PROCESS TIMELINE (6 STEPS) -->
-  <!-- ========================================================================= -->
-  <section id="process" class="py-24 md:py-36 bg-zinc-950 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6">
-      
-      <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-16 border-b border-white/10">
-        <div>
-          <span class="text-xs font-mono tracking-widest text-brand-mint uppercase font-semibold">How We Work</span>
-          <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-white mt-2">A better way to build.</h2>
-        </div>
-        <p class="mt-4 md:mt-0 text-base md:text-lg text-zinc-400 max-w-md font-light">
-          An organized, transparent roadmap that eliminates delays and ensures your store launches on schedule and engineered to convert.
-        </p>
-      </div>
-
-      <!-- Process Steps (Horizontal Step Matrix) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Step 1 -->
-        <div class="p-8 rounded-lg bg-white/[0.02] border border-white/10 hover:border-brand-mint/30 transition-all duration-300 group">
-          <div class="flex items-center justify-between mb-8">
-            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Phase 01</span>
-            <span class="text-xs font-mono text-brand-mint font-bold px-2 py-0.5 rounded bg-brand-mint/10">Step 1</span>
-          </div>
-          <h3 class="text-2xl font-bold text-white font-mono tracking-tight group-hover:text-brand-mint transition-colors">DISCOVER</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Deep dive into your business, customer demographics, core SKU margins, unit economics, and specific revenue targets.
-          </p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="p-8 rounded-lg bg-white/[0.02] border border-white/10 hover:border-brand-mint/30 transition-all duration-300 group">
-          <div class="flex items-center justify-between mb-8">
-            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Phase 02</span>
-            <span class="text-xs font-mono text-brand-mint font-bold px-2 py-0.5 rounded bg-brand-mint/10">Step 2</span>
-          </div>
-          <h3 class="text-2xl font-bold text-white font-mono tracking-tight group-hover:text-brand-mint transition-colors">STRATEGY</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Define information architecture, technical stack, checkout pathways, 3PL/ERP integration hooks, and performance benchmarks.
-          </p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="p-8 rounded-lg bg-white/[0.02] border border-white/10 hover:border-brand-mint/30 transition-all duration-300 group">
-          <div class="flex items-center justify-between mb-8">
-            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Phase 03</span>
-            <span class="text-xs font-mono text-brand-mint font-bold px-2 py-0.5 rounded bg-brand-mint/10">Step 3</span>
-          </div>
-          <h3 class="text-2xl font-bold text-white font-mono tracking-tight group-hover:text-brand-mint transition-colors">DESIGN</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Create high-converting, responsive ecommerce interfaces, tactical product detail pages, and frictionless checkout flows.
-          </p>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="p-8 rounded-lg bg-white/[0.02] border border-white/10 hover:border-brand-mint/30 transition-all duration-300 group">
-          <div class="flex items-center justify-between mb-8">
-            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Phase 04</span>
-            <span class="text-xs font-mono text-brand-mint font-bold px-2 py-0.5 rounded bg-brand-mint/10">Step 4</span>
-          </div>
-          <h3 class="text-2xl font-bold text-white font-mono tracking-tight group-hover:text-brand-mint transition-colors">BUILD</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Turn approved designs into modular, ultra-clean Shopify storefront code with zero technical debt and accessible UI standards.
-          </p>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="p-8 rounded-lg bg-white/[0.02] border border-white/10 hover:border-brand-mint/30 transition-all duration-300 group">
-          <div class="flex items-center justify-between mb-8">
-            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Phase 05</span>
-            <span class="text-xs font-mono text-brand-mint font-bold px-2 py-0.5 rounded bg-brand-mint/10">Step 5</span>
-          </div>
-          <h3 class="text-2xl font-bold text-white font-mono tracking-tight group-hover:text-brand-mint transition-colors">OPTIMIZE</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Conduct multi-device QA, edge caching tests, checkout latency optimization, and automated end-to-end purchasing audits.
-          </p>
-        </div>
-
-        <!-- Step 6 -->
-        <div class="p-8 rounded-lg bg-white/[0.02] border border-white/10 hover:border-brand-mint/30 transition-all duration-300 group">
-          <div class="flex items-center justify-between mb-8">
-            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Phase 06</span>
-            <span class="text-xs font-mono text-brand-mint font-bold px-2 py-0.5 rounded bg-brand-mint/10">Step 6</span>
-          </div>
-          <h3 class="text-2xl font-bold text-white font-mono tracking-tight group-hover:text-brand-mint transition-colors">LAUNCH</h3>
-          <p class="mt-4 text-zinc-400 text-sm leading-relaxed font-light">
-            Flawless DNS migration, zero-downtime deployment, live revenue monitoring, and dedicated merchant training sessions.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 7 — ABOUT SHOPDEV (FOCUSED & COMPANY-CENTRIC) -->
-  <!-- ========================================================================= -->
-  <section id="about" class="py-24 md:py-36 bg-brand-black border-b border-white/10">
-    <div class="max-w-5xl mx-auto px-6">
-      
-      <div class="border-l-2 border-brand-mint pl-6 sm:pl-10">
-        <span class="text-xs font-mono tracking-widest text-brand-mint uppercase font-semibold block mb-3">About Studio</span>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
-          Not just another Shopify store.
-        </h2>
-        <p class="mt-8 text-lg sm:text-xl md:text-2xl text-zinc-300 font-light leading-relaxed">
-          ShopDev is an ecommerce development studio focused on building better online stores for growing brands. We combine Shopify expertise, thoughtful UX, custom development, and modern AI-assisted workflows to create ecommerce experiences that are simple to use and built for growth.
-        </p>
-
-        <!-- Proof Pillars: Pure company capability, no personal resume fluff -->
-        <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-white/10 font-mono text-xs text-zinc-400">
-          <div>
-            <div class="text-white font-bold text-sm mb-1 uppercase tracking-wider">Independent Studio</div>
-            <div>Dedicated senior engineering team with direct partner contact</div>
-          </div>
-          <div>
-            <div class="text-white font-bold text-sm mb-1 uppercase tracking-wider">Shopify Ecosystem</div>
-            <div>Deep familiarity with Plus APIs, Functions, Hydrogen & Checkout Extensibility</div>
-          </div>
-          <div>
-            <div class="text-white font-bold text-sm mb-1 uppercase tracking-wider">Modern Velocity</div>
-            <div>AI acceleration paired with uncompromising editorial craft</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 8 — FINAL CTA (MASSIVE, CONFIDENT, MINIMAL) -->
-  <!-- ========================================================================= -->
-  <section id="contact" class="py-28 md:py-44 bg-zinc-950 relative overflow-hidden">
-    <!-- Subtle Ambient Glow -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-brand-mint/5 rounded-full blur-[140px] pointer-events-none"></div>
-
-    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-      
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-mint/20 bg-brand-mint/[0.04] text-brand-mint font-mono text-xs uppercase tracking-widest mb-6">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>
-        <span>Taking Select Q3 / Q4 Projects</span>
-      </div>
-
-      <h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white">
-        Ready to build <br>your store?
-      </h2>
-
-      <p class="mt-8 text-lg sm:text-xl text-zinc-400 font-light max-w-xl mx-auto leading-relaxed">
-        Have an ecommerce idea, an existing Shopify store that needs work, or a bigger technical problem to solve?
-      </p>
-
-      <!-- Action Box -->
-      <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
-        <a href="mailto:hello@shopdev.studio?subject=New%20Ecommerce%20Project" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 rounded-sm bg-brand-mint text-brand-black font-bold font-mono tracking-wider uppercase text-sm hover:bg-white transition-all shadow-[0_0_35px_rgba(0,223,137,0.35)]">
-          <span>Start a Project</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-        <a href="mailto:hello@shopdev.studio" class="text-zinc-400 hover:text-white font-mono text-sm tracking-wide transition-colors py-3 px-4">
-          Tell us what you're building →
-        </a>
-      </div>
-
-      <div class="mt-12 text-xs font-mono text-zinc-500">
-        Direct partner response within 24 hours. No sales reps.
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- FOOTER (MINIMAL, ELEGANT, HIGH KERNING) -->
-  <!-- ========================================================================= -->
-  <footer class="py-16 bg-brand-black border-t border-white/10 text-xs font-mono text-zinc-500">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
-      
-      <!-- Brand & Tagline -->
-      <div class="space-y-3">
-        <div class="flex items-center gap-2.5">
-          <span class="text-white font-bold text-base tracking-tight font-mono">ShopDev</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>
-        </div>
-        <p class="text-zinc-400 tracking-wide text-xs">
-          Ecommerce websites built to sell.
-        </p>
-      </div>
-
-      <!-- Footer Nav Links -->
-      <div class="flex flex-wrap gap-8 uppercase tracking-widest text-[11px] text-zinc-400">
-        <a href="#work" class="hover:text-white transition-colors">Work</a>
-        <a href="#services" class="hover:text-white transition-colors">Services</a>
-        <a href="#why-shopdev" class="hover:text-white transition-colors">Philosophy</a>
-        <a href="#process" class="hover:text-white transition-colors">Process</a>
-        <a href="#about" class="hover:text-white transition-colors">About</a>
-      </div>
-
-      <!-- Social & Direct Channels -->
-      <div class="flex items-center gap-6 uppercase tracking-wider text-[11px] text-zinc-400">
-        <a href="mailto:hello@shopdev.studio" class="hover:text-brand-mint transition-colors">Email</a>
-        <a href="https://instagram.com" target="_blank" rel="noopener" class="hover:text-brand-mint transition-colors">Instagram</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener" class="hover:text-brand-mint transition-colors">LinkedIn</a>
-      </div>
-
-    </div>
-
-    <!-- Copyright Bar -->
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-600">
-      <div>© 2025 ShopDev Studio Inc. All rights reserved. Specialized Shopify Engineering.</div>
-      <div class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-mint"></span>
-        <span>Systems nominal — Shopify Certified Architecture</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Subtle Scroll Detection for Navbar -->
+      </section>
+    </section>
+    <section class="section" id="work" aria-labelledby="work-heading"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">Selected work</span><h2 id="work-heading">Work that speaks<br>for itself.</h2></div><p>Real ecommerce experiences built for different products, customers and business requirements.</p></div><div class="work-list" id="project-list"></div></div></section>
+    <section class="section" id="services" aria-labelledby="services-heading"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">Capabilities</span><h2 id="services-heading">From first idea to a store<br>ready for customers.</h2></div></div><div class="services">
+      <article class="service"><span class="service-num">01 / DEVELOPMENT</span><h3>Shopify Development</h3><p>Custom themes, sections, templates and storefront functionality built around your business.</p></article>
+      <article class="service"><span class="service-num">02 / EXPERIENCE</span><h3>Ecommerce Design</h3><p>Clear, intuitive experiences designed around products, customers and conversion.</p></article>
+      <article class="service"><span class="service-num">03 / FUNCTIONALITY</span><h3>Custom Features</h3><p>Store-specific functionality when standard Shopify features aren't enough.</p></article>
+      <article class="service"><span class="service-num">04 / MIGRATION</span><h3>Migration &amp; Replatforming</h3><p>Move to Shopify while preserving important data, functionality and customer experience.</p></article>
+      <article class="service"><span class="service-num">05 / CONNECTIVITY</span><h3>Integrations</h3><p>Connect Shopify with the apps, APIs and systems your business relies on.</p></article>
+      <article class="service"><span class="service-num">06 / OPTIMIZATION</span><h3>Performance &amp; Optimization</h3><p>Faster storefronts, cleaner implementations and better experiences across devices.</p></article>
+    </div></div></section>
+    <section class="problems" aria-labelledby="problems-heading"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">The right partner for your next step</span><h2 id="problems-heading">Built for real ecommerce problems.</h2></div></div><div class="problem-grid">
+      <article class="problem"><span class="problem-no">01</span><h3>Starting from zero</h3><p>Launching a new ecommerce brand? We can take the store from idea to launch.</p></article>
+      <article class="problem"><span class="problem-no">02</span><h3>Improving an existing store</h3><p>Redesign, UX, performance, custom features and Shopify improvements.</p></article>
+      <article class="problem"><span class="problem-no">03</span><h3>Solving something complex</h3><p>Custom functionality, integrations, migrations and business-specific requirements.</p></article>
+    </div></div></section>
+    <section class="section" aria-labelledby="ai-heading"><div class="wrap"><div class="ai-intro reveal"><span class="eyebrow">The ShopDev approach</span><h2 id="ai-heading">AI makes development faster.<br><span>Experience makes the decisions better.</span></h2><p>We use AI to accelerate research, prototyping and development while keeping ecommerce strategy, UX and technical decisions human-led.</p></div><div class="principles">
+      <article class="principle reveal"><span class="principle-icon">↗</span><h3>Ecommerce Thinking</h3><p>We start with your customer, not the code.</p></article>
+      <article class="principle reveal"><span class="principle-icon">◈</span><h3>Shopify Expertise</h3><p>We know what Shopify can do, where it has limits, and how to extend it properly.</p></article>
+      <article class="principle reveal"><span class="principle-icon">✳</span><h3>AI-Accelerated</h3><p>Faster research, prototyping and development through modern AI workflows.</p></article>
+      <article class="principle reveal"><span class="principle-icon">◎</span><h3>Human-Led</h3><p>Technology accelerates the work. Experience guides the decisions.</p></article>
+    </div></div></section>
+    <section class="section" id="process" aria-labelledby="process-heading"><div class="wrap"><div class="section-head reveal"><div><span class="eyebrow">How we work</span><h2 id="process-heading">A better way to build.</h2></div><p>A clear, considered process that keeps your store on track from first conversation to launch.</p></div><div class="process-grid" id="process-grid">
+      <article class="step"><div class="step-top"><span>PHASE 01</span><b>●</b></div><h3>DISCOVER</h3><p>Understand your business, customers and goals.</p></article>
+      <article class="step"><div class="step-top"><span>PHASE 02</span><b>●</b></div><h3>STRATEGY</h3><p>Define the right experience and technical direction.</p></article>
+      <article class="step"><div class="step-top"><span>PHASE 03</span><b>●</b></div><h3>DESIGN</h3><p>Create the storefront experience.</p></article>
+      <article class="step"><div class="step-top"><span>PHASE 04</span><b>●</b></div><h3>BUILD</h3><p>Turn the design into a scalable Shopify store.</p></article>
+      <article class="step"><div class="step-top"><span>PHASE 05</span><b>●</b></div><h3>OPTIMIZE</h3><p>Test UX, performance and functionality.</p></article>
+      <article class="step"><div class="step-top"><span>PHASE 06</span><b>●</b></div><h3>LAUNCH</h3><p>Launch confidently and continue improving.</p></article>
+    </div></div></section>
+    <section class="section" id="about" aria-labelledby="about-heading"><div class="wrap"><div class="about reveal"><div><span class="eyebrow">About ShopDev</span><h2 id="about-heading">Not just another Shopify store.</h2></div><div><p class="about-copy">ShopDev is an ecommerce development studio focused on Shopify. We help brands design, build and improve online stores through thoughtful UX, custom development and AI-assisted workflows.</p><div class="about-points"><div class="about-point"><strong>Shopify Focused</strong><span>Deep experience building and improving Shopify stores.</span></div><div class="about-point"><strong>Ecommerce First</strong><span>Every decision starts with the customer and the buying experience.</span></div><div class="about-point"><strong>AI Accelerated</strong><span>Modern tools help us move faster without replacing experience.</span></div></div></div></div></div></section>
+    <section class="cta-section" id="contact"><div class="wrap reveal"><span class="eyebrow">Have a store to build or improve?</span><h2>Ready to build<br>your store?</h2><p>Have an ecommerce idea, an existing Shopify store that needs work, or a bigger problem to solve?</p><div class="cta-actions"><a class="btn" href="#contact-links">Start a Project <span class="arrow">→</span></a><span class="cta-note">Tell us what you're building&nbsp; →</span></div></div></section>
+  </main>
+  <footer class="footer" id="contact-links"><div class="wrap"><div class="footer-top"><div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark">S</span><span>Shop<span>Dev</span></span></a><p>Ecommerce websites built to sell.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#about">About</a></nav><div class="footer-social" aria-label="Contact and social links"><a href="#contact-links" data-contact="email">Email <small>(add address)</small></a><a href="#contact-links" data-contact="instagram">Instagram <small>(add URL)</small></a><a href="#contact-links" data-contact="linkedin">LinkedIn <small>(add URL)</small></a></div></div><div class="footer-bottom"><span>© <span id="year"></span> ShopDev. Ecommerce websites built to sell.</span><span>Shopify ecommerce development studio</span></div></div></footer>
   <script>
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      if (window.scrollY > 40) {
-        nav.classList.add('py-1', 'border-white/10', 'bg-brand-black/95');
-        nav.classList.remove('bg-brand-black/80');
-      } else {
-        nav.classList.remove('py-1', 'border-white/10', 'bg-brand-black/95');
-        nav.classList.add('bg-brand-black/80');
-      }
-    });
+    // Add verified business contact destinations here before launch.
+    const contact = {email:'', instagram:'', linkedin:''};
+    document.querySelectorAll('[data-contact]').forEach(link=>{const key=link.dataset.contact;const destination=contact[key];if(destination){link.href=key==='email'?`mailto:${destination}`:destination;link.removeAttribute('data-contact');link.querySelector('small')?.remove();if(key!=='email')link.target='_blank';link.rel='noreferrer'}else{link.setAttribute('aria-disabled','true')}});
+    // Resolve relative social metadata to the deployed page path, including GitHub Pages project paths.
+    if(location.protocol==='http:'||location.protocol==='https:'){
+      const deployedPage=new URL(location.pathname,location.origin);
+      document.querySelector('meta[property="og:url"]').content=deployedPage.href;
+      const shareImage=new URL('./og-image.svg',deployedPage);
+      document.querySelector('meta[property="og:image"]').content=shareImage.href;
+      document.querySelector('meta[name="twitter:image"]').content=shareImage.href;
+    }
+    // Add a real ShopDev project screenshot URL to src to replace the current hero visual.
+    const heroScreenshot = {src:'', alt:'ShopDev Shopify storefront project'};
+    if(heroScreenshot.src){const stage=document.querySelector('#hero-stage');stage.classList.add('has-real-image');stage.setAttribute('aria-label',heroScreenshot.alt);stage.querySelector('.stage-body').insertAdjacentHTML('afterend',`<img class="hero-image" src="${heroScreenshot.src}" alt="${heroScreenshot.alt}">`)}
+    // These locally captured project images are served from the site; no project imagery is hotlinked.
+    const projects = [
+      {name:'EV Cable Shop',category:'Ecommerce Development',title:'EV ecommerce with smarter product discovery.',description:'An ecommerce experience built around helping EV owners find the right charging cable for their vehicle.',tags:['Shopify','Product Discovery','Custom Ecommerce','API Integration'],url:'https://www.evcableshop.co.uk/',folder:'ev-cable-shop',featureAlt:'EV Cable Shop vehicle and registration search for charging cable discovery',featureWidth:780,featureHeight:370},
+      {name:'Plateful',category:'Ecommerce Development',title:'Product storytelling for a modern ecommerce brand.',description:'A product-focused ecommerce experience built around premium kitchen products, product education and a clear path from discovery to purchase.',tags:['Shopify','Ecommerce UX','Product Merchandising'],url:'https://www.plateful.co/',folder:'plateful',featureAlt:'Plateful titanium cookware product education and merchandising section',featureWidth:1440,featureHeight:900},
+      {name:'Capsule WD',category:'Fashion Ecommerce',title:'Structured fashion shopping around the capsule wardrobe.',description:'A fashion ecommerce experience designed around capsule collections, category discovery and curated wardrobe building.',tags:['Shopify','Fashion Ecommerce','UX & Navigation'],url:'https://capsulewd.com/',folder:'capsule-wd',featureAlt:'Capsule WD product discovery grid with apparel categories and product listings',featureWidth:1440,featureHeight:900}
+    ];
+    document.querySelector('#project-list').innerHTML = projects.map((p,i)=>{
+      const base=`./projects/${p.folder}/`;
+      return `<article class="project reveal"><div class="project-info"><span class="project-no">0${i+1}</span><span class="project-category">${p.category}</span><h3>${p.name}</h3><h4>${p.title}</h4><p>${p.description}</p><ul class="tags" aria-label="${p.name} project capabilities">${p.tags.map(t=>`<li class="tag">${t}</li>`).join('')}</ul><a class="project-link" href="${p.url}" target="_blank" rel="noopener noreferrer" aria-label="View ${p.name} store in a new tab">View Store <span aria-hidden="true">↗</span></a></div><div class="project-gallery"><figure class="project-main"><picture><source media="(max-width: 600px)" srcset="${base}mobile-home.webp"><img src="${base}desktop-home.webp" width="1440" height="900" alt="${p.name} ecommerce storefront" loading="lazy" decoding="async"></picture></figure><div class="project-supporting"><figure class="project-desktop-view"><img src="${base}desktop-home.webp" width="1440" height="900" alt="${p.name} desktop storefront view" loading="lazy" decoding="async"><figcaption>Desktop storefront</figcaption></figure><figure><img src="${base}feature.webp" width="${p.featureWidth}" height="${p.featureHeight}" alt="${p.featureAlt}" loading="lazy" decoding="async"><figcaption>Store feature</figcaption></figure><figure class="project-mobile-view"><img src="${base}mobile-home.webp" width="390" height="844" alt="${p.name} mobile ecommerce storefront" loading="lazy" decoding="async"><figcaption>Mobile storefront</figcaption></figure></div></div></article>`;
+    }).join('');
+    const observer = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    const menu=document.querySelector('.menu-toggle'), links=document.querySelector('#navlinks');
+    menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');links.classList.toggle('open',open)});
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation')}));
+    const steps=[...document.querySelectorAll('.step')];
+    if('IntersectionObserver' in window){const stepObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){steps.forEach(s=>s.classList.remove('active'));e.target.classList.add('active')}}),{rootMargin:'-35% 0px -50% 0px'});steps.forEach(s=>stepObserver.observe(s))}
+    document.querySelector('#year').textContent=new Date().getFullYear();
   </script>
-
 </body>
 </html>

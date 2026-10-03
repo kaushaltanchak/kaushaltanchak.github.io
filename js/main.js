@@ -24,6 +24,9 @@
   const aiSection = aiFlow?.closest('.ai');
   const aiFlowSteps = [...(aiFlow?.querySelectorAll('[data-ai-step]') || [])];
   const aiFlowLine = aiFlow?.querySelector('.ai-flow__line-progress');
+  const systemsSection = document.querySelector('.systems__integration');
+  const systemsPath = systemsSection?.querySelector('[data-system-path]');
+  const systemsNodes = [...(systemsSection?.querySelectorAll('[data-system-node]') || [])];
   const hero = document.querySelector('.hero');
   const buildStory = document.querySelector('[data-build-story]');
   const buildSteps = [...(buildStory?.querySelectorAll('[data-build-step]') || [])];
@@ -171,6 +174,7 @@
   let currentAiIndex = -1;
   let buildPathLength = 1;
   let aiPathLength = 1;
+  let systemsPathLength = 1;
   try {
     buildPathLength = buildLine?.getTotalLength() || 1;
     if (buildLine) {
@@ -185,6 +189,13 @@
       aiFlowLine.style.strokeDashoffset = `${aiPathLength}`;
     }
   } catch { /* Keep the static sequence if SVG path measurement is unavailable. */ }
+  try {
+    systemsPathLength = systemsPath?.getTotalLength() || 1;
+    if (systemsPath) {
+      systemsPath.style.strokeDasharray = `${systemsPathLength}`;
+      systemsPath.style.strokeDashoffset = reduceMotion.matches ? '0' : `${systemsPathLength}`;
+    }
+  } catch { /* Keep the static system map if SVG path measurement is unavailable. */ }
 
   function setWorkActive(index) {
     if (index === currentWorkIndex) return;
@@ -274,6 +285,7 @@
       hero?.style.removeProperty('--hero-opacity');
       hero?.style.removeProperty('--hero-y');
       hero?.style.removeProperty('--hero-scale');
+      if (systemsPath) systemsPath.style.strokeDashoffset = '0';
       return;
     }
 
@@ -298,21 +310,16 @@
       const travel = Math.max(workSequence.offsetHeight - window.innerHeight, 1);
       const progress = clamp(-workSequence.getBoundingClientRect().top / travel);
       const position = progress * (workScenes.length - 1);
-      const baseIndex = Math.min(workScenes.length - 1, Math.floor(position));
-      const transition = baseIndex === workScenes.length - 1 ? 0 : position - baseIndex;
       const activeIndex = Math.min(workScenes.length - 1, Math.max(0, Math.round(position)));
       workScenes.forEach((scene, index) => {
-        const isBase = index === baseIndex;
-        const isIncoming = index === baseIndex + 1 && transition > .001;
-        const visible = isBase || isIncoming;
-        const reveal = isIncoming ? transition : 1;
-        scene.style.zIndex = isIncoming ? '4' : isBase ? '3' : '2';
-        scene.style.setProperty('--scene-opacity', visible ? '1' : '0');
-        scene.style.setProperty('--scene-present', visible ? '1' : '0');
-        scene.style.setProperty('--scene-x', isIncoming ? `${((1 - transition) * 18).toFixed(1)}px` : isBase ? `${(-transition * 18).toFixed(1)}px` : '0px');
-        scene.style.setProperty('--scene-scale', isIncoming ? `${(.994 + transition * .006).toFixed(3)}` : isBase ? `${(1 - transition * .006).toFixed(3)}` : '.994');
-        scene.style.setProperty('--scene-clip', isIncoming ? `${((1 - reveal) * 100).toFixed(1)}%` : '0%');
-        scene.style.setProperty('--scene-image-scale', isIncoming ? `${(1.055 - transition * .055).toFixed(3)}` : '1');
+        const active = index === activeIndex;
+        scene.style.zIndex = active ? '4' : '2';
+        scene.style.setProperty('--scene-opacity', active ? '1' : '0');
+        scene.style.setProperty('--scene-present', active ? '1' : '0');
+        scene.style.setProperty('--scene-x', active ? '0px' : index < activeIndex ? '-18px' : '18px');
+        scene.style.setProperty('--scene-scale', active ? '1' : '.985');
+        scene.style.setProperty('--scene-clip', active ? '0%' : '100%');
+        scene.style.setProperty('--scene-image-scale', active ? '1' : '1.055');
       });
       setWorkActive(activeIndex);
       if (workProgressFill) workProgressFill.style.transform = `scaleX(${(position + 1) / workScenes.length})`;
@@ -352,24 +359,31 @@
       if (aiFlowLine) aiFlowLine.style.strokeDashoffset = `${aiPathLength * (1 - progress)}`;
     }
 
+    if (systemsSection && systemsPath && systemsNodes.length) {
+      const rect = systemsSection.getBoundingClientRect();
+      const progress = clamp((window.innerHeight * .82 - rect.top) / (rect.height + window.innerHeight * .42));
+      const activeIndex = Math.min(systemsNodes.length - 1, Math.floor(progress * systemsNodes.length));
+      systemsNodes.forEach((node, index) => {
+        node.classList.toggle('is-active', index === activeIndex);
+        node.classList.toggle('is-past', index < activeIndex);
+      });
+      systemsPath.style.strokeDashoffset = `${systemsPathLength * (1 - progress)}`;
+    }
+
     if (cinematicEnabled) scrollStories.forEach((story) => {
       const { element, steps, fill } = story;
       if (!steps.length) return;
       const travel = Math.max(element.offsetHeight - window.innerHeight, 1);
       const progress = clamp(-element.getBoundingClientRect().top / travel);
       const position = progress * (steps.length - 1);
-      const baseIndex = Math.min(steps.length - 1, Math.floor(position));
-      const transition = baseIndex === steps.length - 1 ? 0 : position - baseIndex;
       const activeIndex = Math.min(steps.length - 1, Math.max(0, Math.round(position)));
       steps.forEach((step, index) => {
-        const isBase = index === baseIndex;
-        const isIncoming = index === baseIndex + 1 && transition > .001;
-        step.style.zIndex = isIncoming ? '4' : isBase ? '3' : '2';
-        const opacity = isBase ? 1 - transition : isIncoming ? transition : 0;
-        step.style.setProperty('--story-opacity', opacity.toFixed(3));
-        step.style.setProperty('--story-x', isIncoming ? `${((1 - transition) * 24).toFixed(1)}px` : isBase ? `${(-transition * 24).toFixed(1)}px` : '0px');
-        step.style.setProperty('--story-scale', isIncoming ? `${(.985 + transition * .015).toFixed(3)}` : isBase ? `${(1 - transition * .012).toFixed(3)}` : '.985');
-        step.style.setProperty('--story-clip', isIncoming ? `${((1 - transition) * 18).toFixed(1)}%` : '0%');
+        const active = index === activeIndex;
+        step.style.zIndex = active ? '4' : '2';
+        step.style.setProperty('--story-opacity', active ? '1' : '0');
+        step.style.setProperty('--story-x', active ? '0px' : index < activeIndex ? '-24px' : '24px');
+        step.style.setProperty('--story-scale', active ? '1' : '.985');
+        step.style.setProperty('--story-clip', active ? '0%' : '100%');
       });
       setStoryActive(story, activeIndex);
       if (fill) fill.style.transform = `scaleX(${(position + 1) / steps.length})`;
@@ -460,3 +474,4 @@
     }
   });
 })();
+

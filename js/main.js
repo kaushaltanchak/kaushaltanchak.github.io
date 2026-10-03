@@ -307,7 +307,7 @@
     }
 
     if (cinematicEnabled && workSequence && workScenes.length) {
-      const travel = Math.max(workSequence.offsetHeight - window.innerHeight, 1);
+      const travel = Math.max(workSequence.offsetHeight - window.innerHeight * 2, 1);
       const progress = clamp(-workSequence.getBoundingClientRect().top / travel);
       const position = progress * (workScenes.length - 1);
       const activeIndex = Math.min(workScenes.length - 1, Math.max(0, Math.round(position)));
@@ -373,7 +373,7 @@
     if (cinematicEnabled) scrollStories.forEach((story) => {
       const { element, steps, fill } = story;
       if (!steps.length) return;
-      const travel = Math.max(element.offsetHeight - window.innerHeight, 1);
+      const travel = Math.max(element.offsetHeight - window.innerHeight * 2, 1);
       const progress = clamp(-element.getBoundingClientRect().top / travel);
       const position = progress * (steps.length - 1);
       const activeIndex = Math.min(steps.length - 1, Math.max(0, Math.round(position)));
@@ -474,4 +474,3 @@
     }
   });
 })();
-

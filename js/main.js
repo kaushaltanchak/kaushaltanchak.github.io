@@ -12,7 +12,6 @@
   const cursorIcon = cursor?.querySelector('svg');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  const cinematicViewport = window.matchMedia('(min-width: 901px)');
   const workSequence = document.querySelector('[data-work-sequence]');
   const workScenes = [...document.querySelectorAll('[data-work-scene]')];
   const workProgress = workSequence?.querySelector('.work-sequence__progress');
@@ -21,11 +20,23 @@
   const statement = document.querySelector('#statement');
   const wordSequence = statement?.querySelector('[data-word-sequence]');
   const words = [...(wordSequence?.querySelectorAll('[data-word]') || [])];
+  const aiFlow = document.querySelector('.ai-flow');
+  const aiSection = aiFlow?.closest('.ai');
+  const aiFlowSteps = [...(aiFlow?.querySelectorAll('[data-ai-step]') || [])];
+  const aiFlowLine = aiFlow?.querySelector('.ai-flow__line-progress');
   const hero = document.querySelector('.hero');
   const buildStory = document.querySelector('[data-build-story]');
   const buildSteps = [...(buildStory?.querySelectorAll('[data-build-step]') || [])];
   const buildCurrent = buildStory?.querySelector('[data-build-current]');
   const buildLine = buildStory?.querySelector('.build-story__line-progress');
+  const scrollStories = [...document.querySelectorAll('[data-scroll-story]')].map((sequence) => ({
+    element: sequence,
+    steps: [...sequence.querySelectorAll('[data-story-step]')],
+    current: sequence.querySelector('[data-story-current]'),
+    progress: sequence.querySelector('.story-progress'),
+    fill: sequence.querySelector('.story-progress span'),
+    activeIndex: -1,
+  }));
   const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 
   root.classList.add('js-ready');
@@ -108,6 +119,26 @@
   });
 
   const services = [...document.querySelectorAll('[data-service]')];
+  const servicePreview = document.querySelector('.service-preview');
+  const serviceArts = [...(servicePreview?.querySelectorAll('[data-service-art]') || [])];
+  const serviceActive = servicePreview?.querySelector('[data-service-active]');
+  const serviceCaption = servicePreview?.querySelector('[data-service-caption]');
+  let activeServiceIndex = 0;
+  function showService(index) {
+    const service = services[index];
+    const trigger = service?.querySelector('.service__trigger');
+    const description = service?.querySelector('.service__detail p')?.textContent || '';
+    if (!service || !trigger) return;
+    activeServiceIndex = index;
+    servicePreview?.setAttribute('data-active-service', String(index + 1).padStart(2, '0'));
+    serviceArts.forEach((art) => {
+      const active = art.dataset.serviceArt === String(index + 1).padStart(2, '0');
+      art.classList.toggle('is-active', active);
+      art.setAttribute('aria-hidden', String(!active));
+    });
+    if (serviceActive) serviceActive.textContent = `${String(index + 1).padStart(2, '0')} / ${trigger.querySelector('.service__title')?.textContent || 'SERVICE'}`;
+    if (serviceCaption) serviceCaption.textContent = description;
+  }
   services.forEach((service, index) => {
     const button = service.querySelector('.service__trigger');
     const detail = service.querySelector('.service__detail');
@@ -119,22 +150,27 @@
     detail.toggleAttribute('inert', !isOpen);
 
     button.addEventListener('click', () => {
-      const nextOpen = !service.classList.contains('is-open');
       services.forEach((other) => {
         const otherButton = other.querySelector('.service__trigger');
         const otherDetail = other.querySelector('.service__detail');
-        const shouldOpen = other === service && nextOpen;
+        const shouldOpen = other === service;
         other.classList.toggle('is-open', shouldOpen);
         otherButton?.setAttribute('aria-expanded', String(shouldOpen));
         otherDetail?.setAttribute('aria-hidden', String(!shouldOpen));
         otherDetail?.toggleAttribute('inert', !shouldOpen);
       });
+      showService(index);
     });
+    button.addEventListener('focus', () => showService(index));
+    service.addEventListener('pointerenter', () => showService(index));
   });
+  if (services.length) showService(0);
 
   let currentWorkIndex = -1;
   let currentBuildIndex = -1;
+  let currentAiIndex = -1;
   let buildPathLength = 1;
+  let aiPathLength = 1;
   try {
     buildPathLength = buildLine?.getTotalLength() || 1;
     if (buildLine) {
@@ -142,6 +178,13 @@
       buildLine.style.strokeDashoffset = `${buildPathLength}`;
     }
   } catch { /* Keep the static list if SVG path measurement is unavailable. */ }
+  try {
+    aiPathLength = aiFlowLine?.getTotalLength() || 1;
+    if (aiFlowLine) {
+      aiFlowLine.style.strokeDasharray = `${aiPathLength}`;
+      aiFlowLine.style.strokeDashoffset = `${aiPathLength}`;
+    }
+  } catch { /* Keep the static sequence if SVG path measurement is unavailable. */ }
 
   function setWorkActive(index) {
     if (index === currentWorkIndex) return;
@@ -162,16 +205,40 @@
   }
 
   let cinematicEnabled = false;
+  function setStoryActive(story, index) {
+    if (index === story.activeIndex) return;
+    story.activeIndex = index;
+    story.steps.forEach((step, stepIndex) => {
+      const active = stepIndex === index;
+      step.classList.toggle('is-active', active);
+      step.classList.toggle('is-past', stepIndex < index);
+      step.inert = !active;
+      step.setAttribute('aria-hidden', String(!active));
+    });
+    const name = story.steps[index]?.dataset.storyTitle || `Step ${index + 1}`;
+    const count = story.steps.length;
+    if (story.current) story.current.textContent = `${String(index + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')}`;
+    if (story.progress) {
+      story.progress.setAttribute('aria-valuenow', String(index + 1));
+      story.progress.setAttribute('aria-valuetext', `${name}, ${index + 1} of ${count}`);
+    }
+  }
+
   function syncCinematicMode() {
-    const shouldEnable = cinematicViewport.matches && !reduceMotion.matches && workScenes.length > 0;
+    const shouldEnable = !reduceMotion.matches && workScenes.length > 0;
     if (shouldEnable === cinematicEnabled) return;
     cinematicEnabled = shouldEnable;
     workSequence?.classList.toggle('is-cinematic', shouldEnable);
     buildStory?.classList.toggle('is-cinematic', shouldEnable);
+    scrollStories.forEach((story) => story.element.classList.toggle('is-cinematic', shouldEnable));
     if (shouldEnable) {
       currentWorkIndex = -1;
       currentBuildIndex = -1;
       setWorkActive(0);
+      scrollStories.forEach((story) => {
+        story.activeIndex = -1;
+        setStoryActive(story, 0);
+      });
     } else {
       workScenes.forEach((scene) => {
         scene.inert = false;
@@ -188,6 +255,15 @@
         step.removeAttribute('aria-current');
       });
       currentBuildIndex = -1;
+      scrollStories.forEach((story) => {
+        story.activeIndex = -1;
+        story.steps.forEach((step) => {
+          step.inert = false;
+          step.removeAttribute('aria-hidden');
+          step.classList.remove('is-active', 'is-past');
+        });
+        story.steps[0]?.classList.add('is-active');
+      });
     }
     updateScrollExperiences();
   }
@@ -259,6 +335,45 @@
       }
       if (buildLine) buildLine.style.strokeDashoffset = `${buildPathLength * (1 - progress)}`;
     }
+
+    if (aiFlow && aiFlowSteps.length) {
+      const rect = (aiSection || aiFlow).getBoundingClientRect();
+      const progress = clamp((window.innerHeight - rect.top) / (rect.height + window.innerHeight));
+      const activeIndex = Math.min(aiFlowSteps.length - 1, Math.max(0, Math.round(progress * (aiFlowSteps.length - 1))));
+      if (activeIndex !== currentAiIndex) {
+        currentAiIndex = activeIndex;
+        aiFlowSteps.forEach((step, index) => {
+          step.classList.toggle('is-active', index === activeIndex);
+          step.classList.toggle('is-past', index < activeIndex);
+          if (index === activeIndex) step.setAttribute('aria-current', 'step');
+          else step.removeAttribute('aria-current');
+        });
+      }
+      if (aiFlowLine) aiFlowLine.style.strokeDashoffset = `${aiPathLength * (1 - progress)}`;
+    }
+
+    if (cinematicEnabled) scrollStories.forEach((story) => {
+      const { element, steps, fill } = story;
+      if (!steps.length) return;
+      const travel = Math.max(element.offsetHeight - window.innerHeight, 1);
+      const progress = clamp(-element.getBoundingClientRect().top / travel);
+      const position = progress * (steps.length - 1);
+      const baseIndex = Math.min(steps.length - 1, Math.floor(position));
+      const transition = baseIndex === steps.length - 1 ? 0 : position - baseIndex;
+      const activeIndex = Math.min(steps.length - 1, Math.max(0, Math.round(position)));
+      steps.forEach((step, index) => {
+        const isBase = index === baseIndex;
+        const isIncoming = index === baseIndex + 1 && transition > .001;
+        step.style.zIndex = isIncoming ? '4' : isBase ? '3' : '2';
+        const opacity = isBase ? 1 - transition : isIncoming ? transition : 0;
+        step.style.setProperty('--story-opacity', opacity.toFixed(3));
+        step.style.setProperty('--story-x', isIncoming ? `${((1 - transition) * 24).toFixed(1)}px` : isBase ? `${(-transition * 24).toFixed(1)}px` : '0px');
+        step.style.setProperty('--story-scale', isIncoming ? `${(.985 + transition * .015).toFixed(3)}` : isBase ? `${(1 - transition * .012).toFixed(3)}` : '.985');
+        step.style.setProperty('--story-clip', isIncoming ? `${((1 - transition) * 18).toFixed(1)}%` : '0%');
+      });
+      setStoryActive(story, activeIndex);
+      if (fill) fill.style.transform = `scaleX(${(position + 1) / steps.length})`;
+    });
   }
 
   let scrollFrame = 0;
@@ -278,7 +393,6 @@
     syncCinematicMode();
     scheduleScrollUpdate();
   }, { passive: true });
-  cinematicViewport.addEventListener?.('change', syncCinematicMode);
   reduceMotion.addEventListener?.('change', () => {
     syncCinematicMode();
     if (reduceMotion.matches) {

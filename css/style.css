@@ -267,7 +267,7 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
 .footer__email { display: inline-flex; align-items: center; gap: 13px; font-size: clamp(19px, 2.4vw, 30px); letter-spacing: -.04em; }
 .footer__email .icon { color: var(--green); }
 .footer__email:hover .icon { transform: translate(2px,-2px); }
-.footer__social { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; transition: color .2s ease; }
+.footer__social { display: inline-flex; min-height: 44px; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; transition: color .2s ease; }
 .footer__bottom { display: flex; min-height: 50px; align-items: center; justify-content: space-between; gap: 22px; border-top: 1px solid var(--rule); color: var(--subtle); font-size: 9px; letter-spacing: .08em; }
 .footer__bottom a { display: inline-flex; align-items: center; gap: 5px; color: #b4b9b0; transition: color .2s ease; }
 .footer__bottom a:hover { color: var(--green); }

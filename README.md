@@ -1,21 +1,33 @@
 # ShopDev
 
-One-page ecommerce development studio website built with semantic HTML, CSS and vanilla JavaScript. It has no build step or backend and can be hosted as a static GitHub Pages site.
+Static, multi-page ShopDev website built with semantic HTML, CSS and vanilla JavaScript. The site runs directly on GitHub Pages with no production build step, server runtime or backend.
+
+## Pages
+
+- Home: `/`
+- Work index and eight case studies: `/work/` and `/work/<project>/`
+- Services index and four service pages: `/services/` and `/services/<service>/`
+- About: `/about/`
+- Contact: `/contact/`
 
 ## Preview locally
 
-Open `index.html` directly, or serve the folder from a local web server:
+From the repository root, run:
 
 ```powershell
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Then open the local address printed by the server. This server is only for preview; GitHub Pages serves the files directly.
+
+## Contact form
+
+The contact form validates in the browser and prepares an email to `hello@shopdev.studio` in the visitor’s mail app. It does not send data to a server or store submissions.
 
 ## Publish with GitHub Pages
 
-Publish the repository root as the site source. The `CNAME` file is set to `shopdev.studio`; configure the matching DNS records at the domain registrar and enable HTTPS in the repository’s Pages settings.
+Publish the repository root as the site source. The `CNAME` file points to `shopdev.studio`; keep the matching DNS records at the domain registrar and HTTPS enabled in the repository’s Pages settings. `robots.txt`, `sitemap.xml`, `.nojekyll`, GA4 and canonical metadata are retained for production.
 
-## Project assets
+## Assets and project links
 
-The portfolio uses locally bundled imagery from the four public storefronts named in the project brief; these are original brand media assets rather than full-page screen captures. Each project image links to its corresponding live site. The hero storefront illustration is a CSS and HTML interaction study, not a client project screenshot.
+Images used by the site are stored under `assets/`. Each case study links to its corresponding live project site. The project copy uses the source repository’s verified content and does not add unverified results or metrics.

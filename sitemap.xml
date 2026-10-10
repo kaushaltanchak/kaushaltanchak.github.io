@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://shopdev.studio/</loc>
-  </url>
+  <url><loc>https://shopdev.studio/</loc></url>
+  <url><loc>https://shopdev.studio/work/</loc></url>
+  <url><loc>https://shopdev.studio/about/</loc></url>
+  <url><loc>https://shopdev.studio/contact/</loc></url>
+  <url><loc>https://shopdev.studio/services/</loc></url>
+  <url><loc>https://shopdev.studio/services/shopify-development/</loc></url>
+  <url><loc>https://shopdev.studio/services/ecommerce-ux/</loc></url>
+  <url><loc>https://shopdev.studio/services/custom-ecommerce-development/</loc></url>
+  <url><loc>https://shopdev.studio/services/integrations/</loc></url>
+  <url><loc>https://shopdev.studio/work/anti-label/</loc></url>
+  <url><loc>https://shopdev.studio/work/seresilk/</loc></url>
+  <url><loc>https://shopdev.studio/work/good-rituals/</loc></url>
+  <url><loc>https://shopdev.studio/work/happytooned/</loc></url>
+  <url><loc>https://shopdev.studio/work/koerierhub/</loc></url>
+  <url><loc>https://shopdev.studio/work/richyn/</loc></url>
+  <url><loc>https://shopdev.studio/work/charlotte-cave/</loc></url>
+  <url><loc>https://shopdev.studio/work/resparkle/</loc></url>
 </urlset>

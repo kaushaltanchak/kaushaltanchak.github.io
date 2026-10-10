@@ -55,3 +55,7 @@
  .motion-ready .closing-cta-action { clip-path:none; transition:none; }
  .motion-ready .closing-cta-line>span { transition:none; }
 }
+.brand-logo { aspect-ratio:1270 / 299; flex-shrink:0; width:180px; display:block; position:relative; overflow:hidden; }
+.brand-logo img { width:151.2%; max-width:none; height:auto; position:absolute; top:-58.2%; left:-25.75%; }
+.footer .brand-logo { width:140px; }
+@media(max-width:767px) { .site-header .brand-logo { width:160px; } }

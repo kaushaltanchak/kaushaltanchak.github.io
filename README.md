@@ -22,7 +22,7 @@ Then open the local address printed by the server. This server is only for previ
 
 ## Contact form
 
-The contact form validates in the browser and prepares an email to `hello@shopdev.studio` in the visitor’s mail app. It does not send data to a server or store submissions.
+The contact form validates in the browser and submits inquiries asynchronously to Web3Forms. Set the public ShopDev Web3Forms access key in `js/contact-config.js` before publishing; submissions are delivered by Web3Forms and are not stored by this static site.
 
 ## Publish with GitHub Pages
 

@@ -239,13 +239,164 @@
   function setupContactForm() {
     const form = document.querySelector('.contact-form');
     if (!form) return;
-    const fields = [...form.querySelectorAll('input[name], select[name], textarea[name]')];
-    const status = document.createElement('div');
-    status.className = 'form-status';
-    status.setAttribute('role', 'status');
-    status.setAttribute('tabindex', '-1');
-    status.hidden = true;
-    form.append(status);
+    const fields = [...form.querySelectorAll('input:not([type="hidden"])[name], select[name], textarea[name]')];
+    const budget = form.querySelector('[name="budget"]');
+    const countryInput = form.querySelector('[name="country"]');
+    const currencyInput = form.querySelector('[name="currency"]');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const submitLabel = [...(submitButton?.childNodes || [])].find((node) => node.nodeType === Node.TEXT_NODE);
+    const originalSubmitLabel = submitLabel?.textContent?.trim() || 'START A CONVERSATION';
+    const errorStatus = form.querySelector('[data-form-error]');
+    const successStatus = document.querySelector('.contact-success');
+
+    const currencyByCountry = {
+      IN: 'INR', US: 'USD', GB: 'GBP', CA: 'CAD', AU: 'AUD', NZ: 'NZD', SG: 'SGD',
+      JP: 'JPY', CH: 'CHF', LI: 'CHF', CN: 'CNY', HK: 'HKD', TW: 'TWD', KR: 'KRW',
+      MX: 'MXN', BR: 'BRL', AR: 'ARS', CO: 'COP', PE: 'PEN', CL: 'CLP', BO: 'BOB',
+      PY: 'PYG', UY: 'UYU', CR: 'CRC', DO: 'DOP', JM: 'JMD', TT: 'TTD',
+      ZA: 'ZAR', AE: 'AED', SA: 'SAR', QA: 'QAR', KW: 'KWD', BH: 'BHD', OM: 'OMR',
+      IL: 'ILS', TR: 'TRY', RU: 'RUB', PL: 'PLN', CZ: 'CZK', HU: 'HUF', RO: 'RON',
+      SE: 'SEK', NO: 'NOK', DK: 'DKK', IS: 'ISK', RS: 'RSD', BA: 'BAM', MK: 'MKD',
+      MD: 'MDL', BY: 'BYN', AM: 'AMD', AZ: 'AZN', GE: 'GEL', KZ: 'KZT', UZ: 'UZS',
+      AL: 'ALL', ID: 'IDR', MY: 'MYR', TH: 'THB', PH: 'PHP', VN: 'VND', PK: 'PKR',
+      BD: 'BDT', NP: 'NPR', LK: 'LKR', EG: 'EGP', NG: 'NGN', KE: 'KES', GH: 'GHS',
+      ET: 'ETB', MA: 'MAD', TN: 'TND', DZ: 'DZD', IR: 'IRR', IQ: 'IQD', JO: 'JOD',
+      LB: 'LBP', AF: 'AFN', KH: 'KHR', MM: 'MMK', MN: 'MNT', EC: 'USD', SV: 'USD'
+    };
+    const euroCountries = new Set([
+      'AT', 'BE', 'BG', 'HR', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE', 'IT',
+      'LV', 'LT', 'LU', 'MT', 'NL', 'PT', 'SK', 'SI', 'ES', 'AD', 'MC', 'SM',
+      'VA', 'ME', 'XK'
+    ]);
+    const timeZoneCountries = {
+      'Asia/Kolkata': 'IN', 'Asia/Calcutta': 'IN', 'Europe/London': 'GB',
+      'Europe/Vienna': 'AT', 'Europe/Brussels': 'BE', 'Europe/Sofia': 'BG',
+      'Europe/Zagreb': 'HR', 'Asia/Nicosia': 'CY', 'Europe/Nicosia': 'CY',
+      'Europe/Tallinn': 'EE', 'Europe/Helsinki': 'FI', 'Europe/Paris': 'FR',
+      'Europe/Berlin': 'DE', 'Europe/Athens': 'GR', 'Europe/Dublin': 'IE',
+      'Europe/Rome': 'IT', 'Europe/Riga': 'LV', 'Europe/Vilnius': 'LT',
+      'Europe/Luxembourg': 'LU', 'Europe/Malta': 'MT', 'Europe/Amsterdam': 'NL',
+      'Europe/Lisbon': 'PT', 'Europe/Bratislava': 'SK', 'Europe/Ljubljana': 'SI',
+      'Europe/Madrid': 'ES', 'Europe/Monaco': 'MC', 'Europe/Andorra': 'AD',
+      'Europe/San_Marino': 'SM', 'Europe/Vatican': 'VA', 'Europe/Podgorica': 'ME',
+      'Europe/Belgrade': 'RS', 'Europe/Pristina': 'XK', 'Europe/Zurich': 'CH',
+      'Europe/Oslo': 'NO', 'Europe/Stockholm': 'SE', 'Europe/Copenhagen': 'DK',
+      'Europe/Warsaw': 'PL', 'Europe/Prague': 'CZ', 'Europe/Budapest': 'HU',
+      'Europe/Bucharest': 'RO', 'Europe/Istanbul': 'TR', 'Europe/Moscow': 'RU',
+      'Europe/Kyiv': 'UA', 'Europe/Kiev': 'UA', 'Europe/Chisinau': 'MD',
+      'Europe/Sarajevo': 'BA', 'Europe/Skopje': 'MK', 'Europe/Tirane': 'AL',
+      'America/Toronto': 'CA',
+      'America/Vancouver': 'CA', 'America/Edmonton': 'CA', 'America/Winnipeg': 'CA',
+      'America/Halifax': 'CA', 'America/St_Johns': 'CA', 'America/Regina': 'CA',
+      'America/Whitehorse': 'CA', 'America/Yellowknife': 'CA', 'America/Iqaluit': 'CA',
+      'America/New_York': 'US', 'America/Detroit': 'US', 'America/Chicago': 'US',
+      'America/Denver': 'US', 'America/Phoenix': 'US', 'America/Los_Angeles': 'US',
+      'America/Anchorage': 'US', 'America/Adak': 'US', 'Pacific/Honolulu': 'US',
+      'Australia/Sydney': 'AU', 'Australia/Melbourne': 'AU', 'Australia/Brisbane': 'AU',
+      'Australia/Perth': 'AU', 'Australia/Adelaide': 'AU', 'Australia/Hobart': 'AU',
+      'Pacific/Auckland': 'NZ', 'Pacific/Chatham': 'NZ', 'Asia/Singapore': 'SG',
+      'Asia/Tokyo': 'JP', 'Asia/Seoul': 'KR', 'Asia/Shanghai': 'CN',
+      'Asia/Hong_Kong': 'HK', 'Asia/Taipei': 'TW', 'Asia/Dubai': 'AE',
+      'Asia/Riyadh': 'SA', 'Asia/Doha': 'QA', 'Asia/Kuwait': 'KW',
+      'Asia/Jerusalem': 'IL', 'Asia/Tehran': 'IR', 'Asia/Baghdad': 'IQ',
+      'America/Mexico_City': 'MX', 'America/Monterrey': 'MX', 'America/Tijuana': 'MX',
+      'America/Cancun': 'MX', 'America/Buenos_Aires': 'AR',
+      'America/Sao_Paulo': 'BR', 'America/Bogota': 'CO', 'America/Lima': 'PE',
+      'America/Santiago': 'CL', 'Asia/Jakarta': 'ID', 'Asia/Kuala_Lumpur': 'MY',
+      'Asia/Bangkok': 'TH', 'Asia/Manila': 'PH', 'Asia/Ho_Chi_Minh': 'VN',
+      'Asia/Karachi': 'PK', 'Asia/Dhaka': 'BD', 'Asia/Kathmandu': 'NP',
+      'Asia/Colombo': 'LK', 'Africa/Cairo': 'EG', 'Africa/Lagos': 'NG',
+      'Africa/Nairobi': 'KE', 'Africa/Accra': 'GH', 'Africa/Johannesburg': 'ZA',
+      'Africa/Addis_Ababa': 'ET', 'Africa/Casablanca': 'MA', 'Africa/Tunis': 'TN',
+      'Africa/Algiers': 'DZ'
+    };
+    const rangesByCurrency = {
+      INR: [5000, 10000, 20000, 30000], JPY: [50000, 100000, 200000, 300000],
+      KRW: [500000, 1000000, 2000000, 3000000], IDR: [5000000, 10000000, 20000000, 30000000],
+      VND: [5000000, 10000000, 20000000, 30000000], PKR: [150000, 300000, 600000, 900000],
+      BDT: [50000, 100000, 200000, 300000], NPR: [50000, 100000, 200000, 300000],
+      LKR: [150000, 300000, 600000, 900000]
+    };
+    const countryName = (code) => {
+      try { return new Intl.DisplayNames(['en'], { type: 'region' }).of(code) || code; }
+      catch { return code; }
+    };
+    const localeRegion = () => {
+      const locales = [...(navigator.languages || []), navigator.language].filter(Boolean);
+      for (const locale of locales) {
+        try {
+          const region = new Intl.Locale(locale.replace(/_/g, '-')).region;
+          if (region) return region.toUpperCase() === 'UK' ? 'GB' : region.toUpperCase();
+        } catch { /* Ignore malformed or unsupported browser locale values. */ }
+      }
+      return '';
+    };
+    const detectLocation = () => {
+      let timeZone = '';
+      try { timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }
+      catch { /* Some embedded browsers do not expose a resolved time zone. */ }
+      const region = timeZoneCountries[timeZone] || localeRegion() || 'IN';
+      // Keep INR as the detection-failure fallback above; use USD for detected countries without a local mapping.
+      const currency = euroCountries.has(region) ? 'EUR' : (currencyByCountry[region] || 'USD');
+      return { region, country: countryName(region), currency, timeZone };
+    };
+    const budgetOptions = (location) => {
+      if (location.currency === 'INR') {
+        return ['Under ₹5,000', '₹5,000 – ₹10,000', '₹10,000 – ₹20,000', '₹20,000 – ₹30,000', '₹30,000+'];
+      }
+      if (location.currency === 'USD') return ['Under $500', '$500 – $1,000', '$1,000 – $2,000', '$2,000 – $3,000', '$3,000+'];
+      if (location.currency === 'GBP') return ['Under £500', '£500 – £1,000', '£1,000 – £2,000', '£2,000 – £3,000', '£3,000+'];
+      if (location.currency === 'EUR') return ['Under €500', '€500 – €1,000', '€1,000 – €2,000', '€2,000 – €3,000', '€3,000+'];
+      const amounts = rangesByCurrency[location.currency] || [500, 1000, 2000, 3000];
+      let format;
+      try {
+        format = new Intl.NumberFormat(`en-${location.region}`, {
+          style: 'currency', currency: location.currency, maximumFractionDigits: 0
+        });
+      } catch {
+        format = new Intl.NumberFormat('en', {
+          style: 'currency', currency: location.currency, maximumFractionDigits: 0
+        });
+      }
+      return [
+        `Under ${format.format(amounts[0])}`,
+        `${format.format(amounts[0])} – ${format.format(amounts[1])}`,
+        `${format.format(amounts[1])} – ${format.format(amounts[2])}`,
+        `${format.format(amounts[2])} – ${format.format(amounts[3])}`,
+        `${format.format(amounts[3])}+`
+      ];
+    };
+    let location = { region: 'IN', country: 'India', currency: 'INR', timeZone: '' };
+    try { location = detectLocation(); }
+    catch { /* Explicit fallback: India and INR; the form remains available. */ }
+    if (budget && countryInput && currencyInput) {
+      const placeholder = budget.querySelector('option[value=""]') || document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Select budget range';
+      placeholder.disabled = true;
+      placeholder.selected = true;
+      budget.replaceChildren(placeholder);
+      budgetOptions(location).forEach((label) => {
+        const option = document.createElement('option');
+        option.value = label;
+        option.textContent = label;
+        budget.append(option);
+      });
+      countryInput.value = location.country;
+      currencyInput.value = location.currency;
+    }
+
+    const statusLink = (status, message) => {
+      const emailLink = document.createElement('a');
+      emailLink.href = 'mailto:hello@shopdev.studio';
+      emailLink.className = 'studio-text';
+      emailLink.textContent = 'hello@shopdev.studio';
+      status.replaceChildren(
+        document.createTextNode(message),
+        emailLink,
+        document.createTextNode('.')
+      );
+    };
 
     const messages = {
       name: 'Please enter your name.',
@@ -300,38 +451,93 @@
       field.addEventListener('input', () => validate(field));
       field.addEventListener('change', () => validate(field));
     });
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      status.hidden = true;
+      if (form.dataset.submitting === 'true') return;
+      errorStatus.hidden = true;
       const invalid = fields.filter((field) => validate(field));
       if (invalid.length) {
         invalid[0].focus();
         return;
       }
 
-      const values = Object.fromEntries(fields.map((field) => [field.name, field.value.trim()]));
-      const subject = `Project enquiry: ${values.project_type}`;
-      const body = [
+      const values = Object.fromEntries(new FormData(form).entries());
+      const accessKey = window.SHOPDEV_CONTACT_CONFIG?.web3FormsAccessKey?.trim();
+      if (!accessKey) {
+        statusLink(errorStatus, 'Something went wrong while sending your inquiry. Please try again or email us directly at ');
+        errorStatus.hidden = false;
+        errorStatus.focus();
+        return;
+      }
+
+      const subject = values.company
+        ? `New ShopDev Project Inquiry — ${values.company}`
+        : 'New ShopDev Project Inquiry';
+      const message = [
+        'New ShopDev Project Inquiry',
+        '',
         `Name: ${values.name}`,
         `Email: ${values.email}`,
         `Company / Brand: ${values.company || 'Not provided'}`,
-        `Current website: ${values.website || 'Not provided'}`,
-        `Project type: ${values.project_type}`,
-        `Budget range: ${values.budget}`,
+        `Current Website: ${values.website || 'Not provided'}`,
+        `Project Type: ${values.project_type}`,
+        `Budget Range: ${values.budget}`,
+        `Country: ${values.country || location.country}`,
+        `Currency: ${values.currency || location.currency}`,
         '',
-        'Project details:',
+        'Project Details:',
         values.details
       ].join('\n');
-      const mailto = `mailto:hello@shopdev.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      status.textContent = 'Your email draft is opening in your mail app. Review the details and send it when you are ready. If it does not open, email hello@shopdev.studio.';
-      const fallback = document.createElement('a');
-      fallback.href = mailto;
-      fallback.textContent = 'Open the email draft';
-      fallback.className = 'studio-text';
-      status.append(document.createElement('br'), fallback);
-      status.hidden = false;
-      status.focus();
-      window.location.href = mailto;
+      const payload = {
+        access_key: accessKey,
+        subject,
+        from_name: 'SHOPDEV Website',
+        name: values.name,
+        email: values.email,
+        replyto: values.email,
+        company: values.company,
+        website: values.website,
+        project_type: values.project_type,
+        budget: values.budget,
+        details: values.details,
+        country: values.country || location.country,
+        currency: values.currency || location.currency,
+        message
+      };
+
+      form.dataset.submitting = 'true';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.setAttribute('aria-busy', 'true');
+        if (submitLabel) submitLabel.textContent = 'Sending…';
+      }
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        let result = null;
+        try { result = await response.json(); }
+        catch { /* Treat a non-JSON response as a failed submission below. */ }
+        if (!response.ok || !result?.success) throw new Error('Web3Forms submission failed.');
+
+        form.reset();
+        form.hidden = true;
+        successStatus.hidden = false;
+        successStatus.focus();
+      } catch {
+        statusLink(errorStatus, 'Something went wrong while sending your inquiry. Please try again or email us directly at ');
+        errorStatus.hidden = false;
+        errorStatus.focus();
+      } finally {
+        form.dataset.submitting = 'false';
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.removeAttribute('aria-busy');
+          if (submitLabel && !form.hidden) submitLabel.textContent = originalSubmitLabel;
+        }
+      }
     });
   }
 

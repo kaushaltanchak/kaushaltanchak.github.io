@@ -2,6 +2,8 @@
   'use strict';
 
   const clamp = (value) => Math.max(0, Math.min(1, value));
+  // Matches the source reveal envelope for pinned editorial scenes.
+  const sceneReveal = (progress) => Math.max(0, Math.min(1, progress / 0.22, (1 - progress) / 0.18));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function setupMobileNavigation() {
@@ -71,6 +73,7 @@
   }
 
   function setupProcessAccordion() {
+    const names = ['DISCOVER', 'DEFINE', 'DESIGN', 'BUILD', 'LAUNCH', 'GROW'];
     const descriptions = [
       'Listen first. Understand the brand, the customer and what the current experience is asking them to do.',
       'Agree on the problem, the priorities and what a better experience should make possible.',
@@ -102,29 +105,108 @@
       return svg;
     };
 
-    document.querySelectorAll('.process-list .process-step').forEach((step, index) => {
-      const button = step.querySelector('.process-trigger');
-      if (!button || !descriptions[index]) return;
-      const id = button.getAttribute('aria-controls') || `process-${index}`;
-      button.setAttribute('aria-controls', id);
-      let detail = document.getElementById(id);
-      if (!detail) {
-        detail = document.createElement('p');
-        detail.id = id;
-        button.insertAdjacentElement('afterend', detail);
-      }
-      detail.textContent = descriptions[index];
-      const expanded = button.getAttribute('aria-expanded') === 'true';
-      detail.hidden = !expanded;
-      const oldIcon = button.querySelector('svg');
-      if (oldIcon) oldIcon.replaceWith(icon(expanded));
+    document.querySelectorAll('.process-list').forEach((list) => {
+      const steps = [...list.querySelectorAll('.process-step')];
+      const section = list.closest('.expressive-process');
+      const number = section?.querySelector('.dial-number');
+      const name = section?.querySelector('.dial-name');
+      const fill = section?.querySelector('.dial-fill');
 
-      button.addEventListener('click', () => {
-        const next = button.getAttribute('aria-expanded') !== 'true';
-        button.setAttribute('aria-expanded', String(next));
-        detail.hidden = !next;
-        const currentIcon = button.querySelector('svg');
-        if (currentIcon) currentIcon.replaceWith(icon(next));
+      const setActive = (activeIndex) => {
+        steps.forEach((step, index) => {
+          const button = step.querySelector('.process-trigger');
+          if (!button || !descriptions[index]) return;
+          const id = button.getAttribute('aria-controls') || `process-${index}`;
+          button.setAttribute('aria-controls', id);
+          let detail = document.getElementById(id);
+          if (!detail) {
+            detail = document.createElement('p');
+            detail.id = id;
+            button.insertAdjacentElement('afterend', detail);
+          }
+          detail.textContent = descriptions[index];
+          const expanded = index === activeIndex;
+          step.classList.toggle('is-active', expanded);
+          button.setAttribute('aria-expanded', String(expanded));
+          detail.hidden = !expanded;
+          const oldIcon = button.querySelector('svg');
+          if (oldIcon) oldIcon.replaceWith(icon(expanded));
+        });
+
+        if (number && name && fill) {
+          const dialIndex = activeIndex < 0 ? 0 : activeIndex;
+          number.textContent = `0${dialIndex + 1}`;
+          name.textContent = names[dialIndex];
+          fill.style.strokeDashoffset = String(565.5 * (1 - (dialIndex + 1) / 6));
+          number.style.animation = 'none';
+          name.style.animation = 'none';
+          void number.offsetWidth;
+          number.style.removeProperty('animation');
+          name.style.removeProperty('animation');
+        }
+      };
+
+      const initial = steps.findIndex((step) => step.querySelector('.process-trigger')?.getAttribute('aria-expanded') === 'true');
+      setActive(initial < 0 ? 0 : initial);
+      steps.forEach((step, index) => {
+        const button = step.querySelector('.process-trigger');
+        if (!button) return;
+        step.addEventListener('mouseenter', () => setActive(index));
+        button.addEventListener('focus', () => setActive(index));
+        button.addEventListener('click', () => {
+          const isActive = button.getAttribute('aria-expanded') === 'true';
+          setActive(isActive ? -1 : index);
+        });
+      });
+    });
+  }
+
+  function setupIndustries() {
+    const industries = [
+      { name: 'Jewellery', line: 'Detail, sparkle and confidence before checkout.' },
+      { name: 'Fashion', line: 'Collections, sizing and a fast path to the right fit.' },
+      { name: 'Home Decor', line: 'Space for objects, materials and the room they live in.' },
+      { name: 'Wellness', line: 'Clear rituals, ingredients and routines.' },
+      { name: 'Electronics', line: 'Specs, comparisons and the reassurance to buy.' }
+    ];
+    document.querySelectorAll('.industries').forEach((section) => {
+      const buttons = [...section.querySelectorAll('[data-industry]')];
+      const objects = [...section.querySelectorAll('.industry-object')];
+      const ghost = section.querySelector('.industries-ghost');
+      const card = section.querySelector('.industries-card');
+      if (!buttons.length || !objects.length || !ghost || !card) return;
+
+      const select = (index) => {
+        const item = industries[index];
+        if (!item) return;
+        buttons.forEach((button, current) => {
+          const active = current === index;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        objects.forEach((image, current) => {
+          const active = current === index;
+          image.classList.toggle('is-active', active);
+          image.setAttribute('aria-hidden', String(!active));
+          image.alt = active ? `Original ${item.name.toLowerCase()} product concept` : '';
+        });
+        ghost.textContent = item.name;
+        const label = card.querySelector('.eyebrow');
+        const copy = card.querySelector('p');
+        if (label) label.textContent = `${item.name.toUpperCase()} / COMMERCE`;
+        if (copy) copy.textContent = item.line;
+        ghost.style.animation = 'none';
+        card.style.animation = 'none';
+        void ghost.offsetWidth;
+        ghost.style.removeProperty('animation');
+        card.style.removeProperty('animation');
+      };
+
+      buttons.forEach((button) => {
+        const index = Number(button.dataset.industry);
+        button.addEventListener('mouseenter', () => select(index));
+        button.addEventListener('focus', () => select(index));
+        button.addEventListener('click', () => select(index));
       });
     });
   }
@@ -548,7 +630,10 @@
       const reduced = reducedMotion.matches;
       document.body.classList.toggle('motion-ready', !reduced);
       journey.setReduced(reduced);
-      if (reduced) return;
+      if (reduced) {
+        document.querySelectorAll('[data-motion]').forEach((element) => element.classList.remove('is-motion-visible'));
+        return;
+      }
 
       const visible = new Set();
       let scenes = [];
@@ -557,6 +642,7 @@
       let frame = 0;
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+          entry.target.classList.toggle('is-motion-visible', entry.isIntersecting);
           if (entry.isIntersecting) visible.add(entry.target);
           else visible.delete(entry.target);
         });
@@ -592,10 +678,12 @@
           if (!visible.has(element)) return;
           const progress = clamp((y + vh - top) / (vh + height));
           const enter = clamp((y + vh - top) / (vh * 0.85));
-          const timeline = clamp((y - top) / Math.max(1, height - Math.min(vh, 950)));
+          const pinHeight = element.dataset.motion === 'commerce-statement' ? vh : Math.min(vh, 950);
+          const timeline = clamp((y - top) / Math.max(1, height - pinHeight));
           element.style.setProperty('--scene-progress', progress.toFixed(4));
           element.style.setProperty('--scene-enter', enter.toFixed(4));
           element.style.setProperty('--scene-timeline', timeline.toFixed(4));
+          element.style.setProperty('--scene-reveal', sceneReveal(timeline).toFixed(4));
         });
         journey.paint();
       };
@@ -633,6 +721,7 @@
 
   setupMobileNavigation();
   setupProcessAccordion();
+  setupIndustries();
   setupContactForm();
   setupMotion(setupJourney());
 })();

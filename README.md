@@ -5,10 +5,10 @@ Static, multi-page ShopDev website built with semantic HTML, CSS and vanilla Jav
 ## Pages
 
 - Home: `/`
-- Work index and eight case studies: `/work/` and `/work/<project>/`
-- Services index and four service pages: `/services/` and `/services/<service>/`
-- About: `/about/`
-- Contact: `/contact/`
+- Work index and nine case studies: `/work` and `/work/<project>`
+- Services index and four service pages: `/services` and `/services/<service>`
+- About: `/about`
+- Contact: `/contact`
 
 ## Preview locally
 
@@ -26,7 +26,7 @@ The contact form validates in the browser and submits inquiries asynchronously t
 
 ## Publish with GitHub Pages
 
-Publish the repository root as the site source. The `CNAME` file points to `shopdev.studio`; keep the matching DNS records at the domain registrar and HTTPS enabled in the repository’s Pages settings. `robots.txt`, `sitemap.xml`, `.nojekyll`, GA4 and canonical metadata are retained for production.
+Publish the repository root as the site source. The `CNAME` file points to `shopdev.studio`; keep the matching DNS records at the domain registrar and HTTPS enabled in the repository’s Pages settings. `robots.txt`, `sitemap.xml`, `.nojekyll`, GA4 and canonical metadata are retained for production. Internal links and canonical URLs use slashless paths. GitHub Pages currently redirects directory-index paths (for example `/contact`) to `/contact/`; serving those parent routes without a slash while retaining nested `/work/<project>` and `/services/<service>` routes requires host-level rewrites that GitHub Pages does not provide.
 
 ## Assets and project links
 

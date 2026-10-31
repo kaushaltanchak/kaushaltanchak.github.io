@@ -26,7 +26,7 @@ The contact form validates in the browser and submits inquiries asynchronously t
 
 ## Publish with GitHub Pages
 
-Publish the repository root as the site source. The `CNAME` file points to `shopdev.studio`; keep the matching DNS records at the domain registrar and HTTPS enabled in the repository’s Pages settings. `robots.txt`, `sitemap.xml`, `.nojekyll`, GA4 and canonical metadata are retained for production. Internal links and canonical URLs use slashless paths. GitHub Pages currently redirects directory-index paths (for example `/contact`) to `/contact/`; serving those parent routes without a slash while retaining nested `/work/<project>` and `/services/<service>` routes requires host-level rewrites that GitHub Pages does not provide.
+Publish the repository root as the site source. The `CNAME` file points to `shopdev.studio`; keep the matching DNS records at the domain registrar and HTTPS enabled in the repository’s Pages settings. `robots.txt`, `sitemap.xml`, `.nojekyll`, GA4 and canonical metadata are retained for production. Internal links, canonical URLs, Open Graph URLs, breadcrumbs and the sitemap use trailing-slash paths (for example `/contact/`), matching the URLs GitHub Pages actually serves, so search engines never see a canonical URL that redirects.
 
 ## Assets and project links
 
